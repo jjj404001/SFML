@@ -8,6 +8,7 @@ Game::Game() : m_window(sf::Vector2u(800, 600), "Snake"),
 {
 	//Is it work?
 	//Yes!!
+
 }
 
 Game::~Game()
