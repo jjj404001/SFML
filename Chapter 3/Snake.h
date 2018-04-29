@@ -1,6 +1,6 @@
 #ifndef SNAKE_H
 #define SNAKE_H
-
+ 
 #include <SFML/Graphics.hpp>
 #include <vector>
 

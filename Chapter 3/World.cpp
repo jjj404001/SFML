@@ -1,6 +1,6 @@
 #include "World.h"
 #include "Snake.h"
-
+ 
 World::World(sf::Vector2u windSize)
 {
 	m_blockSize = 32;

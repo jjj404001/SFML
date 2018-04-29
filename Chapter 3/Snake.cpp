@@ -1,5 +1,5 @@
 #include "Snake.h"
-
+ 
 Snake::Snake(int blockSize)
 {
 	m_size = blockSize;

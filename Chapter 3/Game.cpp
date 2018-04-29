@@ -2,12 +2,11 @@
 //#include <SFML/Graphics.hpp>
 #include <iostream>
 
-////////////////////////////////////////////////////////////
-
 Game::Game() : m_window(sf::Vector2u(800, 600), "Snake"),
 	m_world(sf::Vector2u(800, 600)), 
 	m_snake(m_world.GetBlockSize())
 {
+	//Is it work?
 }
 
 Game::~Game()

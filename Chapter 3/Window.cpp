@@ -1,5 +1,5 @@
 #include "Window.h"
-
+ 
 void Window::Setup(sf::Vector2u size, std::string title)
 {
 	m_windowSize = size;
