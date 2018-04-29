@@ -7,6 +7,7 @@ Game::Game() : m_window(sf::Vector2u(800, 600), "Snake"),
 	m_snake(m_world.GetBlockSize())
 {
 	//Is it work?
+	//Yes!!
 }
 
 Game::~Game()
