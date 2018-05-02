@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 class Snake;
+class Textbox;
 
 class World
 {
@@ -15,7 +16,7 @@ public:
 
 	void RespawnApple();
 
-	void Update(Snake & player);
+	void Update(Snake & player, Textbox & textbox);
 	void Render(sf::RenderWindow & window);
 
 private:

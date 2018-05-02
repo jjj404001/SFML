@@ -3,6 +3,7 @@
  
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include "Textbox.h"
 
 struct SnakeSegment {
 	SnakeSegment(int x, int y) : position(x, y) {}
@@ -20,7 +21,9 @@ public:
 
 	//Helper methods
 	void SetDirection(Direction dir) { m_dir = dir; }
-	Direction GetDirection() {return m_dir; }
+	//void SetOldDirection(Direction oldDir) { m_oldDir = oldDir; }
+	Direction GetPhysicalDirection();
+	//Direction GetOldDirection() { return m_oldDir; }
 	int GetSpeed() {return m_speed; }
 
 	sf::Vector2i GetPosition()
@@ -31,7 +34,7 @@ public:
 
 	int GetLives() { return m_lives; }
 	int GetScore() { return m_score; }
-	void IncreaseScore() { m_score += 10; }
+	void IncreaseScore(Textbox & textbox);
 	bool HasLost() { return m_lost; }
 
 	//Handle losing
@@ -52,6 +55,7 @@ private:
 	SnakeContainer m_snakeBody;
 	int m_size;
 	Direction m_dir;
+	//Direction m_oldDir;
 	int m_speed;
 	int m_lives;
 	int m_score;
