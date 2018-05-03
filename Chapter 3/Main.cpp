@@ -3,7 +3,7 @@
 int main(int argc, char* argv[])
 {
 	Game game;
-	//game.GetWindow()->SetFrame(60);
+	game.GetWindow()->SetFrame(60);
 
 	while (!game.GetWindow()->IsDone())
 	{

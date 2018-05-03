@@ -4,6 +4,7 @@
 #include "Window.h"
 #include "Snake.h"
 #include "World.h"
+#include "Textbox.h"
 
 class Game
 {
@@ -25,6 +26,7 @@ private:
 	Window m_window;
 	World m_world;
 	Snake m_snake;
+	Textbox m_textbox;
 
 	sf::Clock m_clock;
 	sf::Time m_elapsed;

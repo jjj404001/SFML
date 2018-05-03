@@ -3,8 +3,11 @@
  
 World::World(sf::Vector2u windSize)
 {
-	m_blockSize = 32;
+	m_blockSize = 16;
 	m_windowSize = windSize;
+
+	srand(time(0));
+
 	RespawnApple();
 	m_appleShape.setFillColor(sf::Color::Red);
 	m_appleShape.setRadius(m_blockSize / 2);
@@ -39,6 +42,7 @@ void World::RespawnApple()
 {
 	int maxX = (m_windowSize.x / m_blockSize) - 2;
 	int maxY = (m_windowSize.y / m_blockSize) - 2;
+
 	m_item = sf::Vector2i(
 		rand() % maxX + 1, rand() % maxY + 1);
 
@@ -47,12 +51,12 @@ void World::RespawnApple()
 		m_item.y * m_blockSize);
 }
 
-void World::Update(Snake & player)
+void World::Update(Snake & player, Textbox & textbox)
 {
 	if (player.GetPosition() == m_item)
 	{
 		player.Extend();
-		player.IncreaseScore();
+		player.IncreaseScore(textbox);
 		RespawnApple();
 	}
 

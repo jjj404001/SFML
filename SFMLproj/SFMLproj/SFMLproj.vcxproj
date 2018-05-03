@@ -147,12 +147,14 @@
     <ClCompile Include="..\..\Chapter 3\Game.cpp" />
     <ClCompile Include="..\..\Chapter 3\Main.cpp" />
     <ClCompile Include="..\..\Chapter 3\Snake.cpp" />
+    <ClCompile Include="..\..\Chapter 3\Textbox.cpp" />
     <ClCompile Include="..\..\Chapter 3\Window.cpp" />
     <ClCompile Include="..\..\Chapter 3\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Chapter 3\Game.h" />
     <ClInclude Include="..\..\Chapter 3\Snake.h" />
+    <ClInclude Include="..\..\Chapter 3\Textbox.h" />
     <ClInclude Include="..\..\Chapter 3\Window.h" />
     <ClInclude Include="..\..\Chapter 3\World.h" />
   </ItemGroup>
