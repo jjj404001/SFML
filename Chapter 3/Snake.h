@@ -3,6 +3,7 @@
  
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <deque>
 #include "Textbox.h"
 
 struct SnakeSegment {
@@ -10,7 +11,7 @@ struct SnakeSegment {
 	sf::Vector2i position;
 };
 
-using SnakeContainer = std::vector<SnakeSegment>;
+using SnakeContainer = std::deque<SnakeSegment>;
 
 enum class Direction{None, Up, Down, Left, Right};
 
@@ -21,10 +22,8 @@ public:
 
 	//Helper methods
 	void SetDirection(Direction dir) { m_dir = dir; }
-	//void SetOldDirection(Direction oldDir) { m_oldDir = oldDir; }
-	Direction GetPhysicalDirection();
-	//Direction GetOldDirection() { return m_oldDir; }
-	int GetSpeed() {return m_speed; }
+	Direction GetPhysicalDirection() const;
+	int GetSpeed() const {return m_speed; }
 
 	sf::Vector2i GetPosition()
 	{
@@ -32,10 +31,11 @@ public:
 			m_snakeBody.front().position : sf::Vector2i(1, 1));
 	}
 
-	int GetLives() { return m_lives; }
-	int GetScore() { return m_score; }
+	const SnakeContainer & GetContainer() const { return m_snakeBody; }
+	int GetLives() const { return m_lives; }
+	int GetScore() const { return m_score; }
 	void IncreaseScore(Textbox & textbox);
-	bool HasLost() { return m_lost; }
+	bool HasLost() const { return m_lost; }
 
 	//Handle losing
 	void Lose() { m_lost = true; }
@@ -55,7 +55,6 @@ private:
 	SnakeContainer m_snakeBody;
 	int m_size;
 	Direction m_dir;
-	//Direction m_oldDir;
 	int m_speed;
 	int m_lives;
 	int m_score;

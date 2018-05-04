@@ -1,14 +1,13 @@
 #include "World.h"
 #include "Snake.h"
  
-World::World(sf::Vector2u windSize)
-{
-	m_blockSize = 16;
-	m_windowSize = windSize;
+bool IsOverlap(const SnakeContainer & snakeBody, int itemX, int itemY);
 
+World::World(sf::Vector2u windSize) 
+	: m_windowSize(windSize), m_blockSize(32)
+{
 	srand(time(0));
 
-	RespawnApple();
 	m_appleShape.setFillColor(sf::Color::Red);
 	m_appleShape.setRadius(m_blockSize / 2);
 
@@ -38,13 +37,22 @@ World::World(sf::Vector2u windSize)
 
 World::~World() {}
 
-void World::RespawnApple()
+void World::RespawnApple(const Snake & snake)
 {
 	int maxX = (m_windowSize.x / m_blockSize) - 2;
 	int maxY = (m_windowSize.y / m_blockSize) - 2;
 
-	m_item = sf::Vector2i(
-		rand() % maxX + 1, rand() % maxY + 1);
+	int itemX = rand() % maxX + 1;
+	int itemY = rand() % maxY + 1;
+
+	while (IsOverlap(snake.GetContainer(), itemX, itemY))
+	{
+		itemX = rand() % maxX + 1;
+		itemY = rand() % maxY + 1;
+	}
+
+	m_item.x = itemX;
+	m_item.y = itemY;
 
 	m_appleShape.setPosition(
 		m_item.x * m_blockSize,
@@ -53,11 +61,14 @@ void World::RespawnApple()
 
 void World::Update(Snake & player, Textbox & textbox)
 {
+	if (player.GetPhysicalDirection() == Direction::None)
+		RespawnApple(player);
+
 	if (player.GetPosition() == m_item)
 	{
 		player.Extend();
 		player.IncreaseScore(textbox);
-		RespawnApple();
+		RespawnApple(player);
 	}
 
 	int gridSize_x = m_windowSize.x / m_blockSize;
@@ -77,4 +88,14 @@ void World::Render(sf::RenderWindow & window)
 	for (int i = 0; i < 4; ++i)
 		window.draw(m_bounds[i]);
 	window.draw(m_appleShape);
+}
+
+bool IsOverlap(const SnakeContainer & snakeBody, int itemX, int itemY)
+{
+	for (auto itr = snakeBody.begin(); itr != snakeBody.end(); ++itr)
+	{
+		if (itr->position.x == itemX && itr->position.y == itemY)
+			return true;
+	}
+	return false;
 }

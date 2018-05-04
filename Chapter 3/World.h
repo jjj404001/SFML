@@ -11,10 +11,10 @@ class World
 public:
 	World(sf::Vector2u windSize);
 	~World();
-
+	
 	int GetBlockSize() const { return m_blockSize; }
 
-	void RespawnApple();
+	void RespawnApple(const Snake & snake);
 
 	void Update(Snake & player, Textbox & textbox);
 	void Render(sf::RenderWindow & window);

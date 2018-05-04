@@ -19,7 +19,6 @@ void Snake::Reset()
 	m_snakeBody.push_back(SnakeSegment(5, 5));
 
 	SetDirection(Direction::None);
-	//SetOldDirection(Direction::None);
 	m_speed = 15;
 	m_lives = 3;
 	m_score = 0;
@@ -171,13 +170,13 @@ void Snake::Render(sf::RenderWindow & window)
 	}
 }
 
-Direction Snake::GetPhysicalDirection()
+Direction Snake::GetPhysicalDirection() const
 {
 	if (m_snakeBody.size() <= 1)
 		return Direction::None;
 
-	SnakeSegment & head = m_snakeBody[0];
-	SnakeSegment & neck = m_snakeBody[1];
+	const SnakeSegment & head = m_snakeBody[0];
+	const SnakeSegment & neck = m_snakeBody[1];
 
 	if (head.position.x == neck.position.x)
 		return (head.position.y > neck.position.y

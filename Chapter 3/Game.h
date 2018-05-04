@@ -20,8 +20,6 @@ public:
 
 	Window* GetWindow() { return &m_window; }
 
-	//...
-
 private:
 	Window m_window;
 	World m_world;
@@ -30,7 +28,6 @@ private:
 
 	sf::Clock m_clock;
 	sf::Time m_elapsed;
-	//...
 };
 
 #endif
