@@ -18,6 +18,9 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Chapter 4\Main.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{924318D0-EC88-44AF-9CC3-9EC920FA3103}</ProjectGuid>
@@ -143,21 +146,6 @@
       <AdditionalLibraryDirectories>C:\libs\SFML-2.4.2\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\Chapter 3\Game.cpp" />
-    <ClCompile Include="..\..\Chapter 3\Main.cpp" />
-    <ClCompile Include="..\..\Chapter 3\Snake.cpp" />
-    <ClCompile Include="..\..\Chapter 3\Textbox.cpp" />
-    <ClCompile Include="..\..\Chapter 3\Window.cpp" />
-    <ClCompile Include="..\..\Chapter 3\World.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\Chapter 3\Game.h" />
-    <ClInclude Include="..\..\Chapter 3\Snake.h" />
-    <ClInclude Include="..\..\Chapter 3\Textbox.h" />
-    <ClInclude Include="..\..\Chapter 3\Window.h" />
-    <ClInclude Include="..\..\Chapter 3\World.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
