@@ -76,4 +76,18 @@ struct Binding
 
 using Bindings = std::unordered_map<std::string, Binding*>;
 
+template <class T>
+struct Callback
+{
+	std::string m_name;
+	T* CallbackInstance;
+	void (T::*_callback)();
+
+	void Call()
+	{
+		CallbackInstance->*_callback();
+	}
+
+};
+
 #endif
