@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
+#include <functional>
 
 enum class EventType
 {
@@ -76,18 +77,46 @@ struct Binding
 
 using Bindings = std::unordered_map<std::string, Binding*>;
 
-template <class T>
-struct Callback
-{
-	std::string m_name;
-	T* CallbackInstance;
-	void (T::*_callback)();
+using Callbacks = std::unordered_map
+	<std::string, std::function<void(EventDetails*)>>;
 
-	void Call()
+class EventManager
+{
+public:
+	EventManager();
+	~EventManager();
+
+	bool AddBinding(Binding * binding);
+	bool RemoveBinding(std::string name);
+	void SetFocus(const bool & focus);
+
+	//Needs to be defined in the header!
+	template <class T>
+	bool AddCallback(const std::string & name,
+		void(T::*func)(EventDetails*), T* instance)
 	{
-		CallbackInstance->*_callback();
+		auto temp = std::bind(func, instance, std::placeholders::_1);
+		return m_callbacks.emplace(name, temp).second;
 	}
 
+	void RemoveCallback(const std::string & name)
+	{
+		m_callbacks.erase(name);
+	}
+
+	void HandleEvent(sf::Event & event);
+	void Update();
+
+	sf::Vector2i GetMousePos(sf::RenderWindow* wind = nullptr)
+	{
+		return (wind ? 
+			sf::Mouse::getPosition(*wind) : sf::Mouse::getPosition());
+	}
+
+private:
+	Bindings m_bindings;
+	Callbacks m_callbacks;
+	bool m_hasFocus;
 };
 
 #endif
