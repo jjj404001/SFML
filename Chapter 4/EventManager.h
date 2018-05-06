@@ -114,6 +114,8 @@ public:
 	}
 
 private:
+	void LoadBindings();
+
 	Bindings m_bindings;
 	Callbacks m_callbacks;
 	bool m_hasFocus;
