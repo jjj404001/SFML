@@ -75,7 +75,7 @@ void EventManager::HandleEvent(sf::Event & event)
 					if (bind->m_details.m_keyCode != -1)
 						bind->m_details.m_keyCode = e_itr.second.m_code;
 					++(bind->c);
-					break;
+					break;	
 				}
 			}
 			else
