@@ -38,7 +38,7 @@ bool EventManager::RemoveBinding(std::string name)
 
 void EventManager::SetFocus(const bool & focus)
 {
-
+	m_hasFocus = focus;
 }
 
 void EventManager::HandleEvent(sf::Event & event)
