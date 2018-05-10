@@ -1,7 +1,4 @@
 #include "EventManager.h"
-#include <iostream>
-#include <fstream>
-#include <sstream>
 
 EventManager::EventManager() : m_hasFocus(true)
 {

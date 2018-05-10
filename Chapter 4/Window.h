@@ -1,7 +1,6 @@
 #ifndef WINDOW_H
 #define WINDOW_H
  
-#include <SFML/Graphics.hpp>
 #include "EventManager.h"
 
 class Window
@@ -25,14 +24,13 @@ public:
 	void Close(EventDetails * details = nullptr) { m_isDone = true; }
 
 	//Data getting
-	sf::Vector2u GetWindowSize() { return m_windowSize; }
 	sf::RenderWindow & GetRenderWindow() { return m_window; }
 	EventManager * GetEventManager() { return &m_eventManager; }
 
 	//Data checking
-	bool IsDone() { return m_isDone; }
-	bool IsFullscreen() { return m_isFullscreen; }
-	bool IsFocused() { return m_isFocused; }
+	bool IsDone() const { return m_isDone; }
+	bool IsFullscreen() const { return m_isFullscreen; }
+	bool IsFocused() const { return m_isFocused; }
 
 private:
 	//Helper methods

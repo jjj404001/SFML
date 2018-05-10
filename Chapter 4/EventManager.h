@@ -4,6 +4,9 @@
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
 #include <functional>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 enum class EventType
 {
