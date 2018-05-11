@@ -15,28 +15,37 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Chapter 4\Main.cpp">
+    <ClInclude Include="..\..\Chapter 5\BaseState.h">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Chapter 4\EventManager.cpp">
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 5\StateManager.h">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Chapter 4\Window.cpp">
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 5\EventManager.h">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Chapter 4\Game.cpp">
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 5\Game.h">
       <Filter>소스 파일</Filter>
-    </ClCompile>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 5\Window.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Chapter 4\EventManager.h">
+    <ClCompile Include="..\..\Chapter 5\EventManager.cpp">
       <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 4\Window.h">
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 5\Game.cpp">
       <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 4\Game.h">
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 5\Main.cpp">
       <Filter>소스 파일</Filter>
-    </ClInclude>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 5\Window.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 5\StateManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
