@@ -2,38 +2,31 @@
 
 //////
 //Ctor
-Game::Game() : m_window(sf::Vector2u(800, 600), "Chapter 4")
+Game::Game() : m_window(sf::Vector2u(800, 600), "Chapter 5"),
+	m_stateManager(&m_context)
 {
-	m_texture.loadFromFile("Mushroom.png");
-	m_sprite.setTexture(m_texture);
-
-	m_window.GetEventManager()->
-		AddCallback("Move", &Game::MoveSprite, this);
+	m_context.m_wind = &m_window;
+	m_context.m_eventManager = m_window.GetEventManager();
+	m_stateManager.SwitchTo(StateType::Intro);
 }
 
 ///////////////
 //Game updating
 void Game::Update()
 {
-	m_window.Update(); // Update window event
+	m_window.Update();
+	m_stateManager.Update(m_elapsed);
 }
 
 void Game::Render()
 {
-	m_window.BeginDraw(); //clear
-	m_window.Draw(m_sprite);
+	m_window.BeginDraw();
+	m_stateManager.Draw();
 	m_window.EndDraw();
 }
 
-//////////
-//Callback
-void Game::MoveSprite(EventDetails * details)
+void Game::LateUpdate()
 {
-	sf::Vector2i mousepos =
-		m_window.GetEventManager()->GetMousePos(
-			&m_window.GetRenderWindow());
-	m_sprite.setPosition(mousepos.x, mousepos.y);
-	std::cout << "Moving sprite to: "
-		<< mousepos.x << ":"
-		<< mousepos.y << std::endl;
+	m_stateManager.ProcessRequest();
+	RestartClock();
 }

@@ -51,7 +51,7 @@ private:
 	void RegisterState(const StateType & type)
 	{
 		m_stateFactory[type] = [this]() -> BaseState*
-			{return new T(this); }
+			{ return new T(this); }
 	}
 
 	SharedContext * m_shared;

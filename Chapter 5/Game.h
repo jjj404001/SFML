@@ -1,6 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
+
 #include "Window.h"
+#include "StateManager.h"
 
 class Game
 {
@@ -12,18 +14,22 @@ public:
 	//Game Updating
 	void Update();
 	void Render();
+	void LateUpdate();
 
 	//Data getting
 	Window * GetWindow() { return &m_window; }
 
-private:
-	//Callback
-	void MoveSprite(EventDetails * details);
+	//Time
+	sf::Time GetElapsed() { return m_elapsed; }
+	void RestartClock() { m_elapsed = m_clock.restart(); }
 
+private:
 	//Data
 	Window m_window;
-	sf::Texture m_texture;
-	sf::Sprite m_sprite;
+	StateManager m_stateManager;
+	SharedContext m_context;
+	sf::Clock m_clock;
+	sf::Time m_elapsed;
 };
 
 #endif
