@@ -1,7 +1,7 @@
 #ifndef BASESTATE_H
 #define BASESTATE_H
 
-#include <SFML/System/Time.hpp>
+#include <SFML/Graphics.hpp>
 
 class StateManager;
 
@@ -39,7 +39,7 @@ public:
 
 	StateManager * GetStateManager() { return m_stateMgr; }
 
-private:
+protected:
 	StateManager * m_stateMgr;
 	bool m_transparent;
 	bool m_transcendent;

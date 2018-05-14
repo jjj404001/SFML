@@ -23,6 +23,7 @@
     <ClInclude Include="..\..\Chapter 5\EventManager.h" />
     <ClInclude Include="..\..\Chapter 5\Game.h" />
     <ClInclude Include="..\..\Chapter 5\StateManager.h" />
+    <ClInclude Include="..\..\Chapter 5\State_Intro.h" />
     <ClInclude Include="..\..\Chapter 5\Window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -30,6 +31,7 @@
     <ClCompile Include="..\..\Chapter 5\Game.cpp" />
     <ClCompile Include="..\..\Chapter 5\Main.cpp" />
     <ClCompile Include="..\..\Chapter 5\StateManager.cpp" />
+    <ClCompile Include="..\..\Chapter 5\State_Intro.cpp" />
     <ClCompile Include="..\..\Chapter 5\Window.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

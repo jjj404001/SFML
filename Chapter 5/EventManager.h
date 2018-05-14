@@ -122,6 +122,8 @@ public:
 
 	void HandleEvent(sf::Event & event);
 	void Update();
+	void SetCurrentState(const StateType & type) 
+		{ m_currentState = type; }
 
 	sf::Vector2i GetMousePos(sf::RenderWindow* wind = nullptr)
 	{
