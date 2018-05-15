@@ -24,7 +24,7 @@ public:
 	void Close(EventDetails * details = nullptr) { m_isDone = true; }
 
 	//Data getting
-	sf::RenderWindow & GetRenderWindow() { return m_window; }
+	sf::RenderWindow * GetRenderWindow() { return &m_window; }
 	EventManager * GetEventManager() { return &m_eventManager; }
 
 	//Data checking
