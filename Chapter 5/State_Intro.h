@@ -5,6 +5,9 @@ struct EventDetails;
 class State_Intro : public BaseState
 {
 public:
+	State_Intro(StateManager * stateManager)
+		: BaseState(stateManager) {}
+
 	virtual void OnCreate();
 	virtual void OnDestroy();
 
@@ -17,6 +20,7 @@ public:
 	void Continue(EventDetails * details);
 
 private:
+
 	sf::Texture m_introTexture;
 	sf::Sprite m_introSprite;
 	sf::Text m_text;

@@ -43,6 +43,7 @@ protected:
 	StateManager * m_stateMgr;
 	bool m_transparent;
 	bool m_transcendent;
+
 };
 
 #endif

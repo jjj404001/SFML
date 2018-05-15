@@ -28,6 +28,7 @@ private:
 	Window m_window;
 	StateManager m_stateManager;
 	SharedContext m_context;
+
 	sf::Clock m_clock;
 	sf::Time m_elapsed;
 };
