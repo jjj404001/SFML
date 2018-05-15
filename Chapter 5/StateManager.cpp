@@ -23,7 +23,10 @@ StateManager::~StateManager()
 
 void StateManager::Update(const sf::Time & time)
 {
-	if (!m_states.empty()) { return; }
+	if (m_states.empty()) 
+	{
+		return; 
+	}
 	if (m_states.back().second->IsTranscendent() &&
 		m_states.size() > 1)
 	{
@@ -47,7 +50,7 @@ void StateManager::Update(const sf::Time & time)
 
 void StateManager::Draw()
 {
-	if (!m_states.empty()) { return; }
+	if (m_states.empty()) { return; }
 	if (m_states.back().second->IsTransparent() &&
 		m_states.size() > 1)
 	{
