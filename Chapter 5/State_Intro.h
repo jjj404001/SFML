@@ -1,7 +1,5 @@
 #include "BaseState.h"
 
-struct EventDetails;
-
 class State_Intro : public BaseState
 {
 public:

@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
+struct EventDetails;
 class StateManager;
 
 class BaseState 
