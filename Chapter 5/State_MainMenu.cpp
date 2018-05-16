@@ -68,7 +68,14 @@ void State_MainMenu::OnDestroy()
 
 void State_MainMenu::Activate()
 {
-
+	if (m_stateMgr->HasState(StateType::Game) &&
+		m_labels[0].getString() == "PLAY")
+	{
+		m_labels[0].setString(sf::String("RESUME"));
+		sf::FloatRect rect = m_labels[0].getLocalBounds();
+		m_labels->setOrigin(rect.left + rect.width / 2.0f,
+			rect.top + rect.height / 2.0f);
+	}
 }
 
 void State_MainMenu::Deactivate()
@@ -78,15 +85,43 @@ void State_MainMenu::Deactivate()
 
 void State_MainMenu::Update(const sf::Time & time)
 {
-
 }
 
 void State_MainMenu::Draw()
 {
-
+	sf::RenderWindow * window = m_stateMgr->GetContext()
+		->m_wind->GetRenderWindow();
+	window->draw(m_text);
+	for (int i = 0; i < 3; ++i)
+	{
+		window->draw(m_rects[i]);
+		window->draw(m_labels[i]);
+	}
 }
 
 void State_MainMenu::MouseClick(EventDetails * details)
 {
+	sf::Vector2i mousePos = details->m_mouse;
 
+	float halfX = m_buttonSize.x / 2.0f;
+	float halfY = m_buttonSize.y / 2.0f;
+
+	for (int i = 0; i < 3; ++i)
+	{
+		if (mousePos.x >= m_rects[i].getPosition().x - halfX &&
+			mousePos.x <= m_rects[i].getPosition().x + halfX &&
+			mousePos.y >= m_rects[i].getPosition().y - halfY &&
+			mousePos.y <= m_rects[i].getPosition().y + halfY)
+		{
+			if (i == 0)
+			{
+				m_stateMgr->SwitchTo(StateType::Game);
+			}
+			else if (i == 1)
+				//Credit state
+				;
+			else if (i == 2)
+				m_stateMgr->GetContext()->m_wind->Close();
+		}
+	}
 }

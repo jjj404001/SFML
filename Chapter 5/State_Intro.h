@@ -1,3 +1,6 @@
+#ifndef STATE_INTRO_H
+#define STATE_INTRO_H
+
 #include "BaseState.h"
 
 class State_Intro : public BaseState
@@ -25,3 +28,5 @@ private:
 	sf::Font m_font;
 	float m_timePassed;
 };
+
+#endif

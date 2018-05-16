@@ -26,6 +26,7 @@ public:
 	//Data getting
 	sf::RenderWindow * GetRenderWindow() { return &m_window; }
 	EventManager * GetEventManager() { return &m_eventManager; }
+	sf::Vector2u GetWindowSize() { return m_windowSize; }
 
 	//Data checking
 	bool IsDone() const { return m_isDone; }

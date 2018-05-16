@@ -36,6 +36,9 @@
     <ClInclude Include="..\..\Chapter 5\State_MainMenu.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Chapter 5\State_Game.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Chapter 5\EventManager.cpp">
@@ -57,6 +60,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Chapter 5\State_MainMenu.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 5\State_Game.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
