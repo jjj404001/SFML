@@ -13,11 +13,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\States">
+      <UniqueIdentifier>{918decd2-b7ee-4989-8a5e-c0e7f8cdb7e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Chapter 5\BaseState.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Chapter 5\StateManager.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
@@ -30,14 +30,20 @@
     <ClInclude Include="..\..\Chapter 5\Window.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Chapter 5\State_Intro.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 5\State_MainMenu.h">
-      <Filter>소스 파일</Filter>
+    <ClInclude Include="..\..\Chapter 5\BaseState.h">
+      <Filter>소스 파일\States</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Chapter 5\State_Game.h">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\States</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 5\State_Intro.h">
+      <Filter>소스 파일\States</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 5\State_MainMenu.h">
+      <Filter>소스 파일\States</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 5\State_Paused.h">
+      <Filter>소스 파일\States</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -56,14 +62,17 @@
     <ClCompile Include="..\..\Chapter 5\StateManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Chapter 5\State_Game.cpp">
+      <Filter>소스 파일\States</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Chapter 5\State_Intro.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\States</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Chapter 5\State_MainMenu.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\States</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Chapter 5\State_Game.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="..\..\Chapter 5\State_Paused.cpp">
+      <Filter>소스 파일\States</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
