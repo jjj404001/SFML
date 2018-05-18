@@ -2,10 +2,11 @@
 
 void Game::Update()
 {
-
+	m_window.Update();
 }
 
-void Draw()
+void Game::Draw()
 {
-
+	m_window.StartDraw();
+	m_window.EndDraw();
 }
