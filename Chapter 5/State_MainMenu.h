@@ -1,6 +1,7 @@
+#ifndef STATE_MAINMENU_H
+#define STATE_MAINMENU_H
+
 #include "BaseState.h"
-
-
 
 class State_MainMenu : public BaseState
 {
@@ -31,3 +32,5 @@ private:
 	sf::Text m_labels[3];
 
 };
+
+#endif
