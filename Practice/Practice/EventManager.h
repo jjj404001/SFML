@@ -2,6 +2,8 @@
 #define EVENTMANAGER_H
 
 #include <SFML/Window.hpp>
+#include <unordered_map>
+#include <functional>
 
 enum class EventType
 {
@@ -34,7 +36,65 @@ using Events = std::vector<std::pair<EventType, EventCode>>;
 
 struct EventDetails
 {
+	EventDetails()
+		: m_mousePos(sf::Vector2i(0, 0)), m_name("NULL"), c(0) {}
 
+	void Clear()
+	{
+		m_mousePos = sf::Vector2i(0, 0);
+		m_name = "NULL";
+		c = 0;
+	}
+
+	sf::Vector2i m_mousePos;
+	std::string m_name; // name of event
+	int c; //Number of events that are "on"
+};
+
+struct Binding
+{
+	EventDetails m_details;
+	Events m_events;
+	std::string m_name;
+};
+
+using Bindings = std::unordered_map<std::string, Binding*>;
+
+using Callbacks = std::unordered_map<
+	std::string, std::function<void(EventDetails*)>>;
+
+class EventManager
+{
+public:
+	EventManager();
+	~EventManager();
+
+	template<typename T>
+	bool AddCallback(void T::*func(EventDetails*), T* instance,
+		const std::string & name)
+	{
+		auto temp = std::bind(func, *instance, std::placeholders::_1);
+		return m_callbacks.emplace(name, temp).second;
+	}
+	bool RemoveCallback(const std::string & name)
+	{
+		auto itr = m_callbacks.find(name);
+		if (itr != m_callbacks.end())
+		{
+			m_callbacks.erase(name);
+			return true;
+		}
+		return false;
+	}
+
+	void Update();
+	void HandleEvent(sf::Event event);
+
+private:
+	void LoadBinginds();
+
+	Bindings m_bindings;
+	Callbacks m_callbacks;
 };
 
 #endif
