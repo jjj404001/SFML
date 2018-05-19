@@ -37,14 +37,7 @@ using Events = std::vector<std::pair<EventType, EventCode>>;
 struct EventDetails
 {
 	EventDetails()
-		: m_mousePos(sf::Vector2i(0, 0)), m_name("NULL"), c(0) {}
-
-	void Clear()
-	{
-		m_mousePos = sf::Vector2i(0, 0);
-		m_name = "NULL";
-		c = 0;
-	}
+		: m_mousePos(sf::Vector2i(0, 0)), c(0) {}
 
 	sf::Vector2i m_mousePos;
 	std::string m_name; // name of event
@@ -53,6 +46,8 @@ struct EventDetails
 
 struct Binding
 {
+	Binding() : m_name("NULL") {}
+
 	EventDetails m_details;
 	Events m_events;
 	std::string m_name;
@@ -70,10 +65,10 @@ public:
 	~EventManager();
 
 	template<typename T>
-	bool AddCallback(void T::*func(EventDetails*), T* instance,
+	bool AddCallback(void (T::*func)(EventDetails*), T* instance,
 		const std::string & name)
 	{
-		auto temp = std::bind(func, *instance, std::placeholders::_1);
+		auto temp = std::bind(func, instance, std::placeholders::_1);
 		return m_callbacks.emplace(name, temp).second;
 	}
 	bool RemoveCallback(const std::string & name)

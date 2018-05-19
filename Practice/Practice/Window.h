@@ -28,6 +28,7 @@ public:
 
 	//Closing
 	bool IsDone() { return m_isDone; }
+	void Close() { m_isDone = true; }
 
 private:
 	//Helper methods

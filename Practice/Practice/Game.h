@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include "Window.h"
+#include "EventManager.h"
 
 class Game
 {
@@ -20,6 +21,7 @@ public:
 
 private:
 	Window m_window;
+	EventManager evMgr;
 };
 
 #endif
