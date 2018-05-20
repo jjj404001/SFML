@@ -2,7 +2,6 @@
 #define GAME_H
 
 #include "Window.h"
-#include "EventManager.h"
 
 class Game
 {

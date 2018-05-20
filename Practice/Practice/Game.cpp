@@ -8,5 +8,7 @@ void Game::Update()
 void Game::Draw()
 {
 	m_window.StartDraw();
+	//Draw something...
+	//...
 	m_window.EndDraw();
 }

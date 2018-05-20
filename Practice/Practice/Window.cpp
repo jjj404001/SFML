@@ -3,27 +3,15 @@
 
 //Default Ctor
 Window::Window()
-	: m_isFullscreen(false), m_isDone(false)
 {
-	Create(sf::Vector2u(640, 480), "My Window");
-
-	evMgr.AddCallback(&Window::Close, this, "Window_Close");
-	evMgr.AddCallback(&Window::ToggleFullcreen, this,
-		"Toggle_Fullscreen");
-
+	Setup(sf::Vector2u(640, 480), std::string("Window"));
 }
 
 //Ctor
 Window::Window(const sf::Vector2u & size, 
 	const std::string & title)
-	: m_isFullscreen(false), m_isDone(false)
 {
-	Create(size, title);
-
-	evMgr.AddCallback(&Window::Close, this, "Window_Close");
-	evMgr.AddCallback(&Window::ToggleFullcreen, this,
-		"Toggle_Fullscreen");
-
+	Setup(size, title);
 }
 
 //Window updating
@@ -34,46 +22,43 @@ void Window::Update()
 
 	//Event polling
 	while (m_window.pollEvent(event))
-	{
-		/*
-		//When close button is clicked
-		if (event.type == sf::Event::Closed)
-			m_isDone = true;
-		//When key F5 is pressed
-		if (event.type == sf::Event::KeyPressed && 
-			event.key.code == sf::Keyboard::F5)
-		{
-			//Recreate the window
-			ToggleFullcreen();
-			Destroy();
-			Create(m_windowSize, m_title);
-		}
-		*/
 		evMgr.HandleEvent(event);
-	}
+
 	evMgr.Update();
 }
 
-//Helper method in ctor
-void Window::Create(const sf::Vector2u & size, 
-	const std::string & title)
+//Callback method
+void Window::ToggleFullcreen(EventDetails * details)
 {
-	//Data initialize
+	m_isFullscreen = !m_isFullscreen;
+	Destroy();
+	Create();
+}
+
+//////////Helper method
+//Initialize the Window
+void Window::Setup(const sf::Vector2u & size, const std::string & title)
+{
 	m_windowSize = size;
 	m_title = title;
+	m_isDone = false;
+	m_isFullscreen = false;
 
+	evMgr.AddCallback(&Window::Close, this, "Window_Close");
+	evMgr.AddCallback(&Window::ToggleFullcreen, this,
+		"Toggle_Fullscreen");
+
+	Create();
+}
+
+//Create the window
+void Window::Create()
+{
 	//Window style
 	auto style = (IsFullcreen() ? 
 		sf::Style::Fullscreen : sf::Style::Default);
 
 	//Actual creating window
 	m_window.create({m_windowSize.x, m_windowSize.y, 32},
-		title, style);
-}
-
-void Window::ToggleFullcreen(EventDetails * details)
-{
-	m_isFullscreen = !m_isFullscreen;
-	Destroy();
-	Create(m_windowSize, m_title);
+		m_title, style);
 }

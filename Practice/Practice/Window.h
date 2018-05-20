@@ -22,28 +22,26 @@ public:
 	//Data getting methods
 	sf::RenderWindow * GetRenderWindow() { return &m_window; }
 	sf::Vector2u GetWindowSize() { return m_windowSize; }
+	bool IsFullcreen() const { return m_isFullscreen; }
+	bool IsDone() const { return m_isDone; }
 
-	//Fullscreen
-	bool IsFullcreen() { return m_isFullscreen; }
+	//Callbacks
 	void ToggleFullcreen(EventDetails * details);
-
-
-	//Closing
-	bool IsDone() { return m_isDone; }
 	void Close(EventDetails * details) { m_isDone = true; }
 
 private:
 	//Helper methods
-	void Create(const sf::Vector2u & size, const std::string & title);
+	void Setup(const sf::Vector2u & size, const std::string & title);
+	void Create();
 	void Destroy() { m_window.close(); }
 
-	sf::RenderWindow m_window;
+	sf::RenderWindow m_window; //Actual window
 	sf::Vector2u m_windowSize; //Size of window
 	std::string m_title; //Name of window
-	EventManager evMgr;
 
-	bool m_isDone;
+	bool m_isDone; 
 	bool m_isFullscreen;
+	EventManager evMgr;
 };
 
 #endif

@@ -30,13 +30,13 @@ void EventManager::Update()
 		for (auto itr2 = temp->m_events.begin();
 			itr2 != temp->m_events.end(); ++itr2)
 		{
-			if (itr2->first == EventType::KeyDown && 
+			if (itr2->first == EventType::Keyboard && 
 				sf::Keyboard::isKeyPressed(sf::Keyboard::Key
 				(itr2->second.m_code)))
 			{
 				++temp->m_details.c;
 			}
-			else if (itr2->first == EventType::MButtonDown && 
+			else if (itr2->first == EventType::Mouse && 
 				sf::Mouse::isButtonPressed(sf::Mouse::Button
 				(itr2->second.m_code)))
 			{
@@ -74,6 +74,8 @@ void EventManager::HandleEvent(sf::Event event)
 			else if (type == EventType::MButtonDown &&
 				event.key.code == itr2->second.m_code)
 				++temp->m_details.c;
+			else if (type == EventType::Closed)
+				++temp->m_details.c;
 		}
 	}
 }
@@ -86,7 +88,7 @@ void EventManager::LoadBinginds()
 		std::cout << "Cannot open the file\n" << std::endl;
 		return;
 	}
-	std::stringstream sstr;
+	std::istringstream sstr;
 
 	std::string line;
 	std::string name;
@@ -103,18 +105,13 @@ void EventManager::LoadBinginds()
 
 		while (sstr >> code)
 		{
-			//std::cout << typeid(code.find(":")).name() << std::endl;
-
 			bind->m_events.emplace_back(
 				EventType(std::stoi(code.substr(0, code.find(":")))),
 				EventCode(std::stoi(code.substr(code.find(":") + 1,
 					code.size() - code.find(":")))) );
-
 		}
 
 		m_bindings.emplace(name, bind);
-		name.clear();
-		code.clear();
-		line.clear();
+		sstr.clear();
 	}
 }
