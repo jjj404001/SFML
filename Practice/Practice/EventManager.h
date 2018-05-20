@@ -37,20 +37,21 @@ using Events = std::vector<std::pair<EventType, EventCode>>;
 struct EventDetails
 {
 	EventDetails()
-		: m_mousePos(sf::Vector2i(0, 0)), c(0) {}
+		: m_name("NULL") {}
 
-	sf::Vector2i m_mousePos;
-	std::string m_name; // name of event
-	int c; //Number of events that are "on"
+	std::string m_name;
+	//Other details...
+	//...
 };
 
 struct Binding
 {
 	Binding() : m_name("NULL") {}
 
+	std::string m_name;
 	EventDetails m_details;
 	Events m_events;
-	std::string m_name;
+	int c; //Number of events that are on
 };
 
 using Bindings = std::unordered_map<std::string, Binding*>;
@@ -61,6 +62,7 @@ using Callbacks = std::unordered_map<
 class EventManager
 {
 public:
+	//Ctor & Dtor
 	EventManager();
 	~EventManager();
 
@@ -71,6 +73,7 @@ public:
 		auto temp = std::bind(func, instance, std::placeholders::_1);
 		return m_callbacks.emplace(name, temp).second;
 	}
+
 	bool RemoveCallback(const std::string & name)
 	{
 		auto itr = m_callbacks.find(name);
@@ -82,10 +85,13 @@ public:
 		return false;
 	}
 
-	void Update();
+	//Event handling
 	void HandleEvent(sf::Event event);
+	//Realtime input checking
+	void Update();
 
 private:
+	//Init the member 'm_bindings'
 	void LoadBinginds();
 
 	Bindings m_bindings;

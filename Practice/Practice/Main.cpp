@@ -1,9 +1,12 @@
 #include "Game.h"
 
-//Our simple main
+//Our simple main function
 int main(int argc, int* argv[])
 {
 	Game game;
+
+	//FrameLimit setting
+	game.SetFrameRate(60);
 
 	//Unless game is not done
 	while (!game.GetWindow()->IsDone())
@@ -11,5 +14,6 @@ int main(int argc, int* argv[])
 		//Update & Draw
 		game.Update();
 		game.Draw();
+		game.RestartClock();
 	}
 }

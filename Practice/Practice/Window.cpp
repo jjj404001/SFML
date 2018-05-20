@@ -4,7 +4,7 @@
 //Default Ctor
 Window::Window()
 {
-	Setup(sf::Vector2u(640, 480), std::string("Window"));
+	Setup(sf::Vector2u(1920, 1080), std::string("Window"));
 }
 
 //Ctor
@@ -37,7 +37,8 @@ void Window::ToggleFullcreen(EventDetails * details)
 
 //////////Helper method
 //Initialize the Window
-void Window::Setup(const sf::Vector2u & size, const std::string & title)
+void Window::Setup(const sf::Vector2u & size,
+	const std::string & title)
 {
 	m_windowSize = size;
 	m_title = title;
