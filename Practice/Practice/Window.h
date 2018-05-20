@@ -2,6 +2,7 @@
 #define WINDOW_H
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include "EventManager.h"
 
 class Window
 {
@@ -24,11 +25,12 @@ public:
 
 	//Fullscreen
 	bool IsFullcreen() { return m_isFullscreen; }
-	void ToggleFullcreen() { m_isFullscreen = !m_isFullscreen; }
+	void ToggleFullcreen(EventDetails * details);
+
 
 	//Closing
 	bool IsDone() { return m_isDone; }
-	void Close() { m_isDone = true; }
+	void Close(EventDetails * details) { m_isDone = true; }
 
 private:
 	//Helper methods
@@ -38,6 +40,7 @@ private:
 	sf::RenderWindow m_window;
 	sf::Vector2u m_windowSize; //Size of window
 	std::string m_title; //Name of window
+	EventManager evMgr;
 
 	bool m_isDone;
 	bool m_isFullscreen;

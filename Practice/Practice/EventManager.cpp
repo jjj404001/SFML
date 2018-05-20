@@ -1,6 +1,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <typeinfo>
 #include "EventManager.h"
 
 
@@ -102,12 +103,18 @@ void EventManager::LoadBinginds()
 
 		while (sstr >> code)
 		{
+			//std::cout << typeid(code.find(":")).name() << std::endl;
+
 			bind->m_events.emplace_back(
 				EventType(std::stoi(code.substr(0, code.find(":")))),
-				EventCode(std::stoi(code.substr(code.find(":"), 
+				EventCode(std::stoi(code.substr(code.find(":") + 1,
 					code.size() - code.find(":")))) );
+
 		}
 
 		m_bindings.emplace(name, bind);
+		name.clear();
+		code.clear();
+		line.clear();
 	}
 }
