@@ -4,7 +4,7 @@
 //Default Ctor
 Window::Window()
 {
-	Setup(sf::Vector2u(1920, 1080), std::string("Window"));
+	Setup(sf::Vector2u(640, 480), std::string("Window"));
 }
 
 //Ctor

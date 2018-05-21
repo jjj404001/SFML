@@ -1,5 +1,6 @@
 #include <fstream>
 #include <sstream>
+#include <iostream>
 #include "EventManager.h"
 
 //Ctor & Dtor
@@ -41,13 +42,19 @@ void EventManager::HandleEvent(sf::Event event)
 			//KeyboardDown
 			if (type == EventType::KeyDown &&
 				event.key.code == itr2->second.m_code)
+			{
 				++bind->c;
+				break;
+			}
 			//MouseButtonDown
 			else if (type == EventType::MButtonDown &&
 				event.key.code == itr2->second.m_code)
+			{
 				++bind->c;
-			//WindowCloseButton
-			else if (type == EventType::Closed)
+				break;
+			}
+			//Other events
+			else
 				++bind->c;
 		}
 	}
@@ -100,7 +107,14 @@ void EventManager::LoadBinginds()
 	//Open file
 	std::ifstream inFile("keys.cfg");
 
-	//string values
+	//Check if the file is opened properly
+	if (!inFile.is_open())
+	{
+		std::cout << "Cannot open the file\n";
+		return;
+	}
+
+	//string variabls
 	std::istringstream sstr; 
 	std::string line; //Temporary string
 	std::string name; //Name of binding
@@ -109,15 +123,11 @@ void EventManager::LoadBinginds()
 	//Read a line
 	while (getline(inFile, line)) // ex) Window_Close 0:0
 	{
-		//Make a new binding
-		Binding * bind = new Binding;
-
 		sstr.str(line); //Set stringstream
 		sstr >> name; //Get the name of binding
 
-		//Init the name data
-		bind->m_name = name;
-		bind->m_details.m_name = name;
+		//Make a new binding
+		Binding * bind = new Binding(name);
 
 		//Get a pair of code
 		while (sstr >> code) // ex) 0:0
@@ -129,9 +139,13 @@ void EventManager::LoadBinginds()
 					code.size() - code.find(":")))) );
 		}
 
-		//Add a binding
-		m_bindings.emplace(name, bind);
+		//Add a binding if 'name' is unique
+		if (!m_bindings.emplace(name, bind).second)
+			delete bind;
 		// Clear sstr for next code pair
 		sstr.clear();
 	}
+
+	//Close File
+	inFile.close();
 }

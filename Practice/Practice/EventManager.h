@@ -25,10 +25,8 @@ enum class EventType
 
 struct EventCode
 {
-	EventCode(int code) : m_code(0) 
-	{
-		m_code = code;
-	}
+	EventCode(int code = 0)
+		: m_code(code) {}
 	int m_code;
 };
 
@@ -36,8 +34,8 @@ using Events = std::vector<std::pair<EventType, EventCode>>;
 
 struct EventDetails
 {
-	EventDetails()
-		: m_name("NULL") {}
+	EventDetails(const std::string & name)
+		: m_name(name) {}
 
 	std::string m_name;
 	//Other details...
@@ -46,12 +44,13 @@ struct EventDetails
 
 struct Binding
 {
-	Binding() : m_name("NULL") {}
+	Binding(const std::string & name)
+		: m_name(name), m_details(name), c(0) {}
 
 	std::string m_name;
 	EventDetails m_details;
-	Events m_events;
 	int c; //Number of events that are on
+	Events m_events;
 };
 
 using Bindings = std::unordered_map<std::string, Binding*>;
@@ -74,15 +73,9 @@ public:
 		return m_callbacks.emplace(name, temp).second;
 	}
 
-	bool RemoveCallback(const std::string & name)
+	void RemoveCallback(const std::string & name)
 	{
-		auto itr = m_callbacks.find(name);
-		if (itr != m_callbacks.end())
-		{
 			m_callbacks.erase(name);
-			return true;
-		}
-		return false;
 	}
 
 	//Event handling
