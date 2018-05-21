@@ -20,7 +20,8 @@ public:
 
 	void SetFrameRate(int frame)
 	{
-		m_window.GetRenderWindow()->setFramerateLimit(frame);
+		m_window.GetRenderWindow()->
+			setFramerateLimit(frame);
 	}
 
 	void MoveMushroom();

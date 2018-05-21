@@ -12,10 +12,10 @@ EventManager::EventManager()
 
 EventManager::~EventManager()
 {
-	for (auto itr = m_bindings.begin();
-		itr != m_bindings.end(); ++itr)
+	for (auto &itr : m_bindings)
 	{
-		delete itr->second;
+		delete itr.second;
+		itr.second = nullptr;
 	}
 	m_bindings.clear();
 }
@@ -24,38 +24,43 @@ EventManager::~EventManager()
 void EventManager::HandleEvent(sf::Event event)
 {
 	//For every Binding in evMgr
-	for (auto itr = m_bindings.begin();
-		itr != m_bindings.end(); ++itr)
+	for (auto &itr : m_bindings)
 	{
-		Binding * bind = itr->second;
+		Binding * bind = itr.second;
 
 		//For every Event in current Binding
-		for (auto itr2 = bind->m_events.begin();
-			itr2 != bind->m_events.end(); ++itr2)
+		for (auto &itr2 : bind->m_events)
 		{
-			EventType type = itr2->first;
+			EventType type = itr2.first;
 			//Skip itr that does not match EventYype
 			if (type != EventType(event.type))
 				continue;
 
 			//Check the specific EventType & EventCode
 			//KeyboardDown
-			if (type == EventType::KeyDown &&
-				event.key.code == itr2->second.m_code)
+			if (type == EventType::KeyDown || type == EventType::KeyUp)
 			{
-				++bind->c;
-				break;
+				if (event.key.code == itr2.second.m_code)
+				{
+					++bind->c;
+					break;
+				}
 			}
 			//MouseButtonDown
-			else if (type == EventType::MButtonDown &&
-				event.key.code == itr2->second.m_code)
+			else if (type == EventType::MButtonDown ||
+					 type == EventType::MButtonUp)
 			{
-				++bind->c;
-				break;
+				if (event.key.code == itr2.second.m_code)
+				{
+					++bind->c;
+					break;
+				}
 			}
 			//Other events
-			else
+			else //if(type == EventType::Closed)
+			{
 				++bind->c;
+			}
 		}
 	}
 }
@@ -64,23 +69,21 @@ void EventManager::HandleEvent(sf::Event event)
 void EventManager::Update()
 {
 	//For every Binding in evMgr
-	for (auto itr = m_bindings.begin();
-		itr != m_bindings.end(); ++itr)
+	for (auto &itr : m_bindings)
 	{
-		Binding * bind = itr->second;
+		Binding * bind = itr.second;
 
 		//For every Event in current Binding
-		for (auto itr2 = bind->m_events.begin();
-			itr2 != bind->m_events.end(); ++itr2)
+		for (auto &itr2 : bind->m_events)
 		{
 			//Check the EventType & EventCode
-			if (itr2->first == EventType::Keyboard &&
+			if (itr2.first == EventType::Keyboard &&
 				sf::Keyboard::isKeyPressed(sf::Keyboard::Key
-				(itr2->second.m_code)))
+				(itr2.second.m_code)))
 				++bind->c;
-			else if (itr2->first == EventType::Mouse &&
+			else if (itr2.first == EventType::Mouse &&
 				sf::Mouse::isButtonPressed(sf::Mouse::Button
-				(itr2->second.m_code)))
+				(itr2.second.m_code)))
 				++bind->c;
 		}
 
