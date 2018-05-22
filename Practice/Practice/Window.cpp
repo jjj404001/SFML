@@ -22,8 +22,19 @@ void Window::Update()
 
 	//Event polling
 	while (m_window.pollEvent(event))
+	{
+		if (event.type = sf::Event::LostFocus)
+		{
+			m_isFocus = false;
+			evMgr.SetFocus(false);
+		}
+		else if (event.type = sf::Event::GainedFocus)
+		{
+			m_isFocus = true;
+			evMgr.SetFocus(true);
+		}
 		evMgr.HandleEvent(event);
-
+	}
 	evMgr.Update();
 }
 
@@ -44,6 +55,7 @@ void Window::Setup(const sf::Vector2u & size,
 	m_title = title;
 	m_isDone = false;
 	m_isFullscreen = false;
+	m_isFocus = true;
 
 	evMgr.AddCallback(&Window::Close, this, "Window_Close");
 	evMgr.AddCallback(&Window::ToggleFullcreen, this,

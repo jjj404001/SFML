@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "EventManager.h"
+#include <iostream>
 
 class Window
 {
@@ -41,6 +42,7 @@ private:
 
 	bool m_isDone; 
 	bool m_isFullscreen;
+	bool m_isFocus;
 	EventManager evMgr;
 };
 

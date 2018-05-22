@@ -4,7 +4,7 @@
 #include "EventManager.h"
 
 //Ctor & Dtor
-EventManager::EventManager()
+EventManager::EventManager() : m_isFocus(true)
 {
 	//Initialize member 'm_bindings'
 	LoadBinginds();
@@ -68,6 +68,8 @@ void EventManager::HandleEvent(sf::Event event)
 //Realtime input checking
 void EventManager::Update()
 {
+	//Check window focus
+	if (!m_isFocus) { return; }
 	//For every Binding in evMgr
 	for (auto &itr : m_bindings)
 	{

@@ -82,11 +82,14 @@ public:
 	void HandleEvent(sf::Event event);
 	//Realtime input checking
 	void Update();
+	
+	void SetFocus(bool focus) { m_isFocus = focus; }
 
 private:
 	//Init the member 'm_bindings'
 	void LoadBinginds();
 
+	bool m_isFocus;
 	Bindings m_bindings;
 	Callbacks m_callbacks;
 };
