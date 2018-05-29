@@ -23,12 +23,12 @@ void Window::Update()
 	//Event polling
 	while (m_window.pollEvent(event))
 	{
-		if (event.type = sf::Event::LostFocus)
+		if (event.type == sf::Event::LostFocus)
 		{
 			m_isFocus = false;
 			evMgr.SetFocus(false);
 		}
-		else if (event.type = sf::Event::GainedFocus)
+		else if (event.type == sf::Event::GainedFocus)
 		{
 			m_isFocus = true;
 			evMgr.SetFocus(true);
