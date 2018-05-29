@@ -30,6 +30,12 @@
     <ClCompile Include="EventManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="State_Intro.cpp">
+      <Filter>소스 파일\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -40,6 +46,15 @@
     </ClInclude>
     <ClInclude Include="EventManager.h">
       <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseState.h">
+      <Filter>소스 파일\States</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManager.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="State_Intro.h">
+      <Filter>소스 파일\States</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
