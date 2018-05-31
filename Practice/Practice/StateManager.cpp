@@ -1,28 +1,38 @@
 #include "StateManager.h"
 #include "State_Intro.h"
+#include "State_Game.h"
 
-StateManager::StateManager()
+StateManager::StateManager(Window * window)
+	: m_context(window), m_currentState(StateType::INTRO)
 {
 	RegisterState<State_Intro>(StateType::INTRO);
+	RegisterState<State_Game>(StateType::GAME);
+	//..
 }
 
 StateManager::~StateManager()
 {
-	for (auto itr = m_states.begin(); itr != m_states.end(); ++itr)
-		delete itr->second;
+	for (auto & itr : m_states)
+		delete itr.second;
 }
 
-void StateManager::Update()
+void StateManager::Update(const sf::Time & elapsed)
 {
-	
+	auto itr = m_states.find(m_currentState);
+	if (itr != m_states.end())
+		itr->second->Update(elapsed);
 }
 
 void StateManager::Draw()
 {
-
+	auto itr = m_states.find(m_currentState);
+	if (itr != m_states.end())
+		itr->second->Draw();
 }
 
 void StateManager::SwitchTo(const StateType & type)
 {
-
+	auto itr = m_states.find(m_currentState);
+	if (itr != m_states.end())
+		m_currentState = type;
 }

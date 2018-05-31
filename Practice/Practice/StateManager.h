@@ -1,10 +1,9 @@
 #ifndef STATEMANAGER_H
 #define STATEMANAGER_H
-#include <vector>
+#include <unordered_map>
 #include "BaseState.h"
-
-class Window;
-class EventManager;
+#include "Window.h"
+#include "EventManager.h"
 
 enum class StateType
 {
@@ -13,25 +12,28 @@ enum class StateType
 
 struct SharedContext
 {
-	SharedContext() : m_window(nullptr), m_evMgr(nullptr) {}
+	SharedContext(Window * window)
+	{
+		m_window = window;
+		m_evMgr = window->GetEventManager();
+	}
 	Window * m_window;
 	EventManager * m_evMgr;
 };
 
-using States = std::vector<std::pair<StateType, BaseState*>>;
-
-//using StateFactory = std::unordered_map<StateType,
-//			std::function<void(BaseState*)>>;
+using States = std::unordered_map<StateType, BaseState*>;
 
 class StateManager
 {
 public:
-	StateManager();
+	StateManager(Window * window);
 	~StateManager();
 
-	void Update();
+	void Update(const sf::Time & elapsed);
 	void Draw();
 	void SwitchTo(const StateType & type);
+
+	SharedContext * GetContext() { return &m_context; }
 
 private:
 	//helper
@@ -39,13 +41,13 @@ private:
 	void RegisterState(const StateType & type)
 	{
 		auto itr = m_states.find(type);
-		if (itr != m_states.end())
-			m_states.emplace(type, new T);
+		if (itr == m_states.end())
+			m_states.emplace(type, new T(this));
 	}
 
-	SharedContext * m_context;
+	SharedContext m_context;
 	States m_states;
-
+	StateType m_currentState;
 };
 
 #endif

@@ -1,31 +1,27 @@
 #include "Game.h"
 
-Game::Game() : m_window()
+Game::Game() : m_window(), m_stateMgr(&m_window)
 {
-	TextureLoading();
-}
-
-Game::Game(sf::Vector2u size, std::string & title)
-	: m_window(size, title) 
-{
-	TextureLoading();
+	//TextureLoading();
 }
 
 void Game::Update()
 {
 	m_window.Update();
-	MoveMushroom();
+	m_stateMgr.Update(m_elapsed);
+	//MoveMushroom();
 }
 
 void Game::Draw()
 {
 	m_window.StartDraw();
 	//Draw something...
-	m_window.GetRenderWindow()->draw(m_sprite);
+	//m_window.GetRenderWindow()->draw(m_sprite);
+	m_stateMgr.Draw();
 	m_window.EndDraw();
 }
 
-void Game::MoveMushroom()
+/*void Game::MoveMushroom()
 {
 	sf::Vector2u windowSize = m_window.GetWindowSize();
 
@@ -69,4 +65,4 @@ void Game::TextureLoading()
 		windowSize.y / 2.0f);
 
 	m_increment = sf::Vector2i(400, 400);
-}
+}*/

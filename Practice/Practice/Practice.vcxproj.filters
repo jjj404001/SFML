@@ -36,6 +36,9 @@
     <ClCompile Include="State_Intro.cpp">
       <Filter>소스 파일\States</Filter>
     </ClCompile>
+    <ClCompile Include="State_Game.cpp">
+      <Filter>소스 파일\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -54,6 +57,9 @@
       <Filter>소스 파일</Filter>
     </ClInclude>
     <ClInclude Include="State_Intro.h">
+      <Filter>소스 파일\States</Filter>
+    </ClInclude>
+    <ClInclude Include="State_Game.h">
       <Filter>소스 파일\States</Filter>
     </ClInclude>
   </ItemGroup>

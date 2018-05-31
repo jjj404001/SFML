@@ -22,6 +22,7 @@ public:
 
 	//Data getting methods
 	sf::RenderWindow * GetRenderWindow() { return &m_window; }
+	EventManager * GetEventManager() { return &m_evMgr; }
 	sf::Vector2u GetWindowSize() { return m_windowSize; }
 	bool IsFullcreen() const { return m_isFullscreen; }
 	bool IsDone() const { return m_isDone; }
@@ -43,7 +44,7 @@ private:
 	bool m_isDone; 
 	bool m_isFullscreen;
 	bool m_isFocus;
-	EventManager evMgr;
+	EventManager m_evMgr;
 };
 
 #endif

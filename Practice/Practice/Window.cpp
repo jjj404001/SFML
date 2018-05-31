@@ -26,16 +26,16 @@ void Window::Update()
 		if (event.type == sf::Event::LostFocus)
 		{
 			m_isFocus = false;
-			evMgr.SetFocus(false);
+			m_evMgr.SetFocus(false);
 		}
 		else if (event.type == sf::Event::GainedFocus)
 		{
 			m_isFocus = true;
-			evMgr.SetFocus(true);
+			m_evMgr.SetFocus(true);
 		}
-		evMgr.HandleEvent(event);
+		m_evMgr.HandleEvent(event);
 	}
-	evMgr.Update();
+	m_evMgr.Update();
 }
 
 //Callback method
@@ -57,8 +57,8 @@ void Window::Setup(const sf::Vector2u & size,
 	m_isFullscreen = false;
 	m_isFocus = true;
 
-	evMgr.AddCallback(&Window::Close, this, "Window_Close");
-	evMgr.AddCallback(&Window::ToggleFullcreen, this,
+	m_evMgr.AddCallback(&Window::Close, this, "Window_Close");
+	m_evMgr.AddCallback(&Window::ToggleFullcreen, this,
 		"Toggle_Fullscreen");
 
 	Create();
