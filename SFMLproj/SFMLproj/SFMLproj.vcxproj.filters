@@ -45,6 +45,9 @@
     <ClInclude Include="..\..\Chapter 5\State_Paused.h">
       <Filter>소스 파일\States</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Chapter 6\Utilities.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Chapter 5\EventManager.cpp">
