@@ -4,7 +4,8 @@
 #include "EventManager.h"
 
 //Ctor & Dtor
-EventManager::EventManager() : m_isFocus(true)
+EventManager::EventManager()
+	: m_isFocus(true), m_currentState(StateType(0))
 {
 	//Initialize member 'm_bindings'
 	LoadBinginds();
@@ -93,11 +94,21 @@ void EventManager::Update()
 		//If all Event are "on"
 		if (bind->c == bind->m_events.size())
 		{
-			//Find matching callback
-			auto itr = m_callbacks.find(bind->m_name);
-			//Call the function
+			//Find current state
+			auto itr = m_callbacks.find(m_currentState);
 			if (itr != m_callbacks.end())
-				itr->second(&bind->m_details);
+			{
+				auto itr2 = itr->second.find(bind->m_name);
+				if(itr2 != itr->second.end())
+					itr2->second(&bind->m_details);
+			}
+			else
+			{
+				auto itr = m_callbacks.find(StateType(0));
+				auto itr2 = itr->second.find(bind->m_name);
+				if (itr2 != itr->second.end())
+					itr2->second(&bind->m_details);
+			}
 		}
 
 		//Reset

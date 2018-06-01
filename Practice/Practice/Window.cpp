@@ -57,8 +57,8 @@ void Window::Setup(const sf::Vector2u & size,
 	m_isFullscreen = false;
 	m_isFocus = true;
 
-	m_evMgr.AddCallback(&Window::Close, this, "Window_Close");
-	m_evMgr.AddCallback(&Window::ToggleFullcreen, this,
+	m_evMgr.AddCallback(StateType(0), &Window::Close, this, "Window_Close");
+	m_evMgr.AddCallback(StateType(0), &Window::ToggleFullcreen, this,
 		"Toggle_Fullscreen");
 
 	Create();

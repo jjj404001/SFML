@@ -14,7 +14,7 @@ State_Intro::State_Intro(StateManager * stateMgr)
 	m_sprite.setPosition(windowSize.x / 2, windowSize.y / 2);
 
 	m_stateMgr->GetContext()->m_evMgr->
-		AddCallback(&State_Intro::SwitchTo, this, "Move_To_Intro");
+		AddCallback(StateType::INTRO, &State_Intro::SwitchTo, this, "Move_To_Intro");
 }
 
 void State_Intro::Update(const sf::Time & elapsed)

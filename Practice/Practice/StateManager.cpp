@@ -5,6 +5,8 @@
 StateManager::StateManager(Window * window)
 	: m_context(window), m_currentState(StateType::INTRO)
 {
+	m_context.m_evMgr->SetState(m_currentState);
+
 	RegisterState<State_Intro>(StateType::INTRO);
 	RegisterState<State_Game>(StateType::GAME);
 	//..
@@ -34,5 +36,8 @@ void StateManager::SwitchTo(const StateType & type)
 {
 	auto itr = m_states.find(m_currentState);
 	if (itr != m_states.end())
+	{
 		m_currentState = type;
+		m_context.m_evMgr->SetState(type);
+	}
 }
