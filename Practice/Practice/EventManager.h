@@ -78,7 +78,7 @@ public:
 
 		auto itr = m_callbacks.find(type);
 		if (itr == m_callbacks.end())
-			m_callbacks.emplace(type, std::pair(name, temp));
+			m_callbacks[type].emplace(name, temp);
 		else
 			itr->second.emplace(name, temp);
 	}

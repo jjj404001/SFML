@@ -95,19 +95,21 @@ void EventManager::Update()
 		if (bind->c == bind->m_events.size())
 		{
 			//Find current state
-			auto itr = m_callbacks.find(m_currentState);
-			if (itr != m_callbacks.end())
+			auto itr = m_callbacks.find(StateType(0));
+			auto itr2 = itr->second.find(bind->m_name);
+			if (itr2 != itr->second.end())
 			{
-				auto itr2 = itr->second.find(bind->m_name);
-				if(itr2 != itr->second.end())
-					itr2->second(&bind->m_details);
+				itr2->second(&bind->m_details);
 			}
 			else
 			{
-				auto itr = m_callbacks.find(StateType(0));
-				auto itr2 = itr->second.find(bind->m_name);
-				if (itr2 != itr->second.end())
-					itr2->second(&bind->m_details);
+				auto itr = m_callbacks.find(m_currentState);
+				if (itr != m_callbacks.end())
+				{
+					auto itr2 = itr->second.find(bind->m_name);
+					if (itr2 != itr->second.end())
+						itr2->second(&bind->m_details);
+				}
 			}
 		}
 
