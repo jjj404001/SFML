@@ -58,7 +58,8 @@ using Bindings = std::unordered_map<std::string, Binding*>;
 using Callback = std::unordered_map<std::string,
 	std::function<void(EventDetails*)>>;
 
-enum class StateType;
+enum class StateType; //forward declaration
+
 using Callbacks = std::unordered_map<StateType, Callback>;
 
 
@@ -91,9 +92,9 @@ public:
 			itr->second.erase(name);
 	}
 
-	//Event handling
+	//Window event handler
 	void HandleEvent(sf::Event event);
-	//Realtime input checking
+	//Real-time input handler
 	void Update();
 	
 	void SetFocus(bool focus) { m_isFocus = focus; }

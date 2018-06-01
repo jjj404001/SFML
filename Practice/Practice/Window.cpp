@@ -1,13 +1,12 @@
 #include <SFML/Window/Event.hpp>
 #include "Window.h"
 
-//Default Ctor
+//Ctors
 Window::Window()
 {
 	Setup(sf::Vector2u(640, 480), std::string("Window"));
 }
 
-//Ctor
 Window::Window(const sf::Vector2u & size, 
 	const std::string & title)
 {
@@ -17,12 +16,12 @@ Window::Window(const sf::Vector2u & size,
 //Window updating
 void Window::Update()
 {
-	//Event variable
 	sf::Event event;
 
 	//Event polling
 	while (m_window.pollEvent(event))
 	{
+		//Focus setting
 		if (event.type == sf::Event::LostFocus)
 		{
 			m_isFocus = false;
@@ -33,8 +32,10 @@ void Window::Update()
 			m_isFocus = true;
 			m_evMgr.SetFocus(true);
 		}
+		//Window event handler
 		m_evMgr.HandleEvent(event);
 	}
+	//Real-time input handler
 	m_evMgr.Update();
 }
 
@@ -46,8 +47,8 @@ void Window::ToggleFullcreen(EventDetails * details)
 	Create();
 }
 
-//////////Helper method
-//Initialize the Window
+////////Helper method
+//Initializing window
 void Window::Setup(const sf::Vector2u & size,
 	const std::string & title)
 {
@@ -64,14 +65,14 @@ void Window::Setup(const sf::Vector2u & size,
 	Create();
 }
 
-//Create the window
+//Creating window
 void Window::Create()
 {
 	//Window style
 	auto style = (IsFullcreen() ? 
 		sf::Style::Fullscreen : sf::Style::Default);
 
-	//Actual creating window
+	//Actual window creating
 	m_window.create({m_windowSize.x, m_windowSize.y, 32},
 		m_title, style);
 }

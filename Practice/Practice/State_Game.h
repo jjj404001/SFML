@@ -1,7 +1,8 @@
 #ifndef STATE_GAME_H
 #define STATE_GAME_H
 
-#include "BaseState.h"
+#include <SFML/Graphics.hpp>
+#include "StateManager.h"
 
 class State_Game : public BaseState
 {
@@ -10,11 +11,13 @@ public:
 
 	void Update(const sf::Time & elapsed);
 	void Draw();
-	void Create();
-	void Destroy();
+
+	void MoveMushroom(const sf::Time & elapsed);
 
 private:
-
+	sf::Texture m_texture;
+	sf::Sprite m_sprite;
+	sf::Vector2i m_increment;
 };
 
 #endif

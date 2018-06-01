@@ -9,7 +9,7 @@ StateManager::StateManager(Window * window)
 
 	RegisterState<State_Intro>(StateType::INTRO);
 	RegisterState<State_Game>(StateType::GAME);
-	//..
+	//Other states ...
 }
 
 StateManager::~StateManager()

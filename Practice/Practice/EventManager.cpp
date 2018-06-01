@@ -24,16 +24,14 @@ EventManager::~EventManager()
 //Event Handler
 void EventManager::HandleEvent(sf::Event event)
 {
-	//For every Binding in evMgr
 	for (auto &itr : m_bindings)
 	{
 		Binding * bind = itr.second;
 
-		//For every Event in current Binding
 		for (auto &itr2 : bind->m_events)
 		{
 			EventType type = itr2.first;
-			//Skip itr that does not match EventYype
+			//Skip itr that does not match EventType
 			if (type != EventType(event.type))
 				continue;
 
@@ -58,10 +56,8 @@ void EventManager::HandleEvent(sf::Event event)
 				}
 			}
 			//Other events
-			else //if(type == EventType::Closed)
-			{
+			else
 				++bind->c;
-			}
 		}
 	}
 }
@@ -71,12 +67,11 @@ void EventManager::Update()
 {
 	//Check window focus
 	if (!m_isFocus) { return; }
-	//For every Binding in evMgr
+
 	for (auto &itr : m_bindings)
 	{
 		Binding * bind = itr.second;
 
-		//For every Event in current Binding
 		for (auto &itr2 : bind->m_events)
 		{
 			//Check the EventType & EventCode
@@ -94,14 +89,15 @@ void EventManager::Update()
 		//If all Event are "on"
 		if (bind->c == bind->m_events.size())
 		{
-			//Find current state
+			//Check global callbacks first 
 			auto itr = m_callbacks.find(StateType(0));
 			auto itr2 = itr->second.find(bind->m_name);
 			if (itr2 != itr->second.end())
 			{
+
 				itr2->second(&bind->m_details);
 			}
-			else
+			else //Check callbacks in current state
 			{
 				auto itr = m_callbacks.find(m_currentState);
 				if (itr != m_callbacks.end())
@@ -144,13 +140,12 @@ void EventManager::LoadBinginds()
 		sstr.str(line); //Set stringstream
 		sstr >> name; //Get the name of binding
 
-		//Make a new binding
 		Binding * bind = new Binding(name);
 
 		//Get a pair of code
 		while (sstr >> code) // ex) 0:0
 		{
-			//Adding a 'Event'
+			//Add a 'Event'
 			bind->m_events.emplace_back(
 				EventType(std::stoi(code.substr(0, code.find(":")))),
 				EventCode(std::stoi(code.substr(code.find(":") + 1,

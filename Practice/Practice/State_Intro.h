@@ -2,7 +2,7 @@
 #define STATE_INTRO_H
 
 #include <SFML/Graphics.hpp>
-#include "BaseState.h"
+#include "StateManager.h"
 
 class State_Intro : public BaseState
 {
@@ -11,8 +11,6 @@ public:
 
 	void Update(const sf::Time & elapsed);
 	void Draw();
-	void Create();
-	void Destroy();
 
 	void SwitchTo(EventDetails * details);
 

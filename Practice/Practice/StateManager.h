@@ -3,7 +3,6 @@
 #include <unordered_map>
 #include "BaseState.h"
 #include "Window.h"
-#include "EventManager.h"
 
 enum class StateType
 {
@@ -36,7 +35,6 @@ public:
 	SharedContext * GetContext() { return &m_context; }
 
 private:
-	//helper
 	template<typename T>
 	void RegisterState(const StateType & type)
 	{
