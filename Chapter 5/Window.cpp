@@ -56,3 +56,12 @@ void Window::Create()
 	m_window.create({m_windowSize.x, m_windowSize.y, 32},
 		m_windowTitle, style);
 }
+
+sf::FloatRect Window::GetViewSpace() const
+{
+	sf::Vector2f viewCenter = m_window.getView().getCenter();
+	sf::Vector2f viewSize = m_window.getView().getSize();
+	sf::Vector2f viewSizeHalf(viewSize.x / 2, viewSize.y / 2);
+	sf::FloatRect viewSpace(viewCenter - viewSizeHalf, viewSize);
+	return viewSpace;
+}
