@@ -48,6 +48,18 @@
     <ClInclude Include="..\..\Chapter 6\Utilities.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Chapter 6\ResourceManager.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 6\TextureManager.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 6\SpriteSheet.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 6\Direction.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Chapter 5\EventManager.cpp">
@@ -76,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Chapter 5\State_Paused.cpp">
       <Filter>소스 파일\States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 6\SpriteSheet.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
