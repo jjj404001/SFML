@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "ResourceManager.h"
 
+//Curiously Recurring Template Pattern
 class TextureManager 
 	:	public ResourceManager<TextureManager, sf::Texture>
 {

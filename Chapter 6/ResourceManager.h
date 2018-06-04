@@ -93,6 +93,9 @@ private:
 		paths.open(Utils::GetWorkingDirectory() + pathFile);
 		if (paths.is_open())
 		{
+			// <Example line>
+			// PlayerSprite media/Textures/PlayerSheet.png
+
 			std::string line;
 			while(std::getline(paths, line))
 			{

@@ -15,6 +15,7 @@ public:
 	~SpriteSheet();
 
 	void CropSprite(const sf::IntRect & rect);
+
 	//... Basic setters & getters
 	void SetSpriteSize(const sf::Vector2i & size);
 	void SetSpritePosition(const sf::Vector2f & pos);
