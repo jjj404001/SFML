@@ -20,14 +20,15 @@ public:
 	void SetSpriteSize(const sf::Vector2i & size);
 	void SetSpritePosition(const sf::Vector2f & pos);
 	void SetDirection(const Direction & dir);
+	sf::Vector2i GetSpriteSize() { return m_spriteSize; }
+	Direction GetDirection() { return m_direction; }
 
 	bool LoadSheet(const std::string & file);
 	void ReleaseSheet();
 
 	Anim_Base * GetCurrentAnim();
 	bool SetAnimation(const std::string & name,
-		const bool & play = false,
-		const bool & loop = false);
+		const bool & play = false, const bool & loop = false);
 
 	void Update(const float & dt);
 	void Draw(sf::RenderWindow * wd);

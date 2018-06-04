@@ -1,4 +1,5 @@
 #include "SpriteSheet.h"
+#include "Anim_Base.h"
 
 SpriteSheet::SpriteSheet(TextureManager * textMgr)
 	:	m_textureManager(textMgr), m_animationCurrent(nullptr),
@@ -48,22 +49,32 @@ void SpriteSheet::ReleaseSheet()
 
 Anim_Base * SpriteSheet::GetCurrentAnim()
 {
-
+	return m_animationCurrent;
 }
 
 bool SpriteSheet::SetAnimation(const std::string & name,
 	const bool & play = false,
 	const bool & loop = false)
 {
-
+	auto itr = m_animations.find(name);
+	if (itr == m_animations.end()) return false;
+	if (itr->second == m_animationCurrent) return false;
+	if (m_animationCurrent)
+		m_animationCurrent->Stop();
+	m_animationCurrent = itr->second;
+	m_animationCurrent->SetLooping(loop);
+	if (play)
+		m_animationCurrent->Play();
+	m_animationCurrent->CropSprite();
+	return true;
 }
 
 void SpriteSheet::Update(const float & dt)
 {
-
+	m_animationCurrent->Update(dt);
 }
 
 void SpriteSheet::Draw(sf::RenderWindow * wd)
 {
-
+	wd->draw(m_sprite);
 }

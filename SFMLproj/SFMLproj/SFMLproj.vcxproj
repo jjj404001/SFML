@@ -28,6 +28,8 @@
     <ClInclude Include="..\..\Chapter 5\State_MainMenu.h" />
     <ClInclude Include="..\..\Chapter 5\State_Paused.h" />
     <ClInclude Include="..\..\Chapter 5\Window.h" />
+    <ClInclude Include="..\..\Chapter 6\Anim_Base.h" />
+    <ClInclude Include="..\..\Chapter 6\Anim_Directional.h" />
     <ClInclude Include="..\..\Chapter 6\Direction.h" />
     <ClInclude Include="..\..\Chapter 6\ResourceManager.h" />
     <ClInclude Include="..\..\Chapter 6\SpriteSheet.h" />
@@ -44,6 +46,8 @@
     <ClCompile Include="..\..\Chapter 5\State_MainMenu.cpp" />
     <ClCompile Include="..\..\Chapter 5\State_Paused.cpp" />
     <ClCompile Include="..\..\Chapter 5\Window.cpp" />
+    <ClCompile Include="..\..\Chapter 6\Anim_Base.cpp" />
+    <ClCompile Include="..\..\Chapter 6\Anim_Directional.cpp" />
     <ClCompile Include="..\..\Chapter 6\SpriteSheet.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

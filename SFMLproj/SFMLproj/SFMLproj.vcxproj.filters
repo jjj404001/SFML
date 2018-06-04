@@ -60,6 +60,12 @@
     <ClInclude Include="..\..\Chapter 6\Direction.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Chapter 6\Anim_Base.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 6\Anim_Directional.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Chapter 5\EventManager.cpp">
@@ -90,6 +96,12 @@
       <Filter>소스 파일\States</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Chapter 6\SpriteSheet.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 6\Anim_Base.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 6\Anim_Directional.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
