@@ -29,6 +29,16 @@ bool Anim_Base::IsInAction()
 		&& m_frameCurrent <= m_frameActionEnd);
 }
 
+void Anim_Base::SetLooping(const bool & loop)
+{
+	m_loop = loop;
+}
+
+void Anim_Base::SetName(const std::string & name)
+{
+	m_name = name;
+}
+
 void Anim_Base::Play() { m_playing = true; }
 
 void Anim_Base::Pause() { m_playing = false; }

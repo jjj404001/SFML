@@ -18,7 +18,8 @@ public:
 	void SetSpriteSheet(SpriteSheet * sheet);
 	void SetFrame(const unsigned int & frame);
 	bool IsInAction();
-
+	void SetLooping(const bool & loop);
+	void SetName(const std::string & name);
 
 	void Play();
 	void Pause();
@@ -28,7 +29,7 @@ public:
 	virtual void Update(const float & dt);
 
 	friend std::stringstream & operator>>(
-		std::stringstream & stream, Anim_Base * a)
+		std::stringstream & stream, Anim_Base & a)
 	{
 		a.ReadIn(stream);
 		return stream;

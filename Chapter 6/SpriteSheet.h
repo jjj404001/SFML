@@ -6,7 +6,6 @@
 #include "Direction.h"
 
 class Anim_Base;
-
 using Animations = std::unordered_map<std::string, Anim_Base*>;
 
 class SpriteSheet

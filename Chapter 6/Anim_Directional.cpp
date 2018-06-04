@@ -33,5 +33,6 @@ void Anim_Directional::CropSprite()
 
 void Anim_Directional::ReadIn(std::stringstream & stream)
 {
-
+	stream >> m_frameStart >> m_frameEnd >> m_frameRow
+		>> m_frameTime >> m_frameActionStart >> m_frameActionEnd;
 }

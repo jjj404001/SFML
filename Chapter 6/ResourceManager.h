@@ -2,6 +2,8 @@
 #define RESORCE_MANAGER_H
 
 #include <unordered_map>
+#include <fstream>
+#include <sstream>
 #include "Utilities.h"
 
 template<typename Derived, typename T>
@@ -56,30 +58,32 @@ public:
 
 	void PurgeResource()
 	{
-		while(m_resource.begin() != m_resource.end())
+		while(m_resources.begin() != m_resources.end())
 		{
-			delete m_resource.begin()->second.first;
-			m_resource.erase(m_resource.begin());
+			delete m_resources.begin()->second.first;
+			m_resources.erase(m_resources.begin());
 		}
 	}
 
 	//Curiously Recurring Template Pattern
 	T* Load(const std::string & path)
+	{
 		return static_cast<Derived*>(this)->Load(path);
+	}
 
 private:
 	std::pair<T*, unsigned int> * Find(const std::string & id)
 	{
-		auto itr = m_resource.find(id);
-		return (itr != m_resource.end() ? &itr->second : nullptr);
+		auto itr = m_resources.find(id);
+		return (itr != m_resources.end() ? &itr->second : nullptr);
 	}
 
 	bool Unload(const std::string & id)
 	{
 		auto itr = m_resources.find(id);
-		if (itr == m_resource.end()) return false;
+		if (itr == m_resources.end()) return false;
 		delete itr->second.first;
-		m_resource.erase(itr);
+		m_resources.erase(itr);
 		return true;
 	}
 
