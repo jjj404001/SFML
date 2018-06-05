@@ -8,7 +8,6 @@ Anim_Base::Anim_Base()
 	m_loop(false), m_playing(false) {}
 
 //...Setters & getters
-
 void Anim_Base::SetSpriteSheet(SpriteSheet * sheet)
 {
 	m_spriteSheet = sheet;

@@ -13,10 +13,11 @@ void Anim_Directional::FrameStep()
 	{
 		if (m_loop)
 		{
-			m_frameCurrent = m_frameCurrent;
+			m_frameCurrent = m_frameStart;
 			return;
-			Pause();
 		}
+		m_frameCurrent = m_frameEnd;
+		Pause();
 	}
 }
 
