@@ -18,90 +18,96 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Chapter 5\StateManager.h">
+    <ClInclude Include="..\..\Chapter 7\Map.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Chapter 5\EventManager.h">
+    <ClInclude Include="..\..\Chapter 7\Anim_Base.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Chapter 5\Game.h">
+    <ClInclude Include="..\..\Chapter 7\Anim_Directional.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Chapter 5\Window.h">
+    <ClInclude Include="..\..\Chapter 7\Direction.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Chapter 5\BaseState.h">
+    <ClInclude Include="..\..\Chapter 7\EventManager.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\Game.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\ResourceManager.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\SpriteSheet.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\StateManager.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\TextureManager.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\Utilities.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\Window.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\BaseState.h">
       <Filter>소스 파일\States</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Chapter 5\State_Game.h">
+    <ClInclude Include="..\..\Chapter 7\State_Game.h">
       <Filter>소스 파일\States</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Chapter 5\State_Intro.h">
+    <ClInclude Include="..\..\Chapter 7\State_Intro.h">
       <Filter>소스 파일\States</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Chapter 5\State_MainMenu.h">
+    <ClInclude Include="..\..\Chapter 7\State_MainMenu.h">
       <Filter>소스 파일\States</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Chapter 5\State_Paused.h">
+    <ClInclude Include="..\..\Chapter 7\State_Paused.h">
       <Filter>소스 파일\States</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 6\Utilities.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 6\ResourceManager.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 6\TextureManager.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 6\SpriteSheet.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 6\Direction.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 6\Anim_Base.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 6\Anim_Directional.h">
-      <Filter>소스 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Chapter 5\EventManager.cpp">
+    <ClCompile Include="..\..\Chapter 7\Anim_Base.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Chapter 5\Game.cpp">
+    <ClCompile Include="..\..\Chapter 7\Anim_Directional.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Chapter 5\Main.cpp">
+    <ClCompile Include="..\..\Chapter 7\EventManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Chapter 5\Window.cpp">
+    <ClCompile Include="..\..\Chapter 7\Game.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Chapter 5\StateManager.cpp">
+    <ClCompile Include="..\..\Chapter 7\Main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Chapter 5\State_Game.cpp">
+    <ClCompile Include="..\..\Chapter 7\SpriteSheet.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 7\StateManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 7\Window.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 7\State_Game.cpp">
       <Filter>소스 파일\States</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Chapter 5\State_Intro.cpp">
+    <ClCompile Include="..\..\Chapter 7\State_Intro.cpp">
       <Filter>소스 파일\States</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Chapter 5\State_MainMenu.cpp">
+    <ClCompile Include="..\..\Chapter 7\State_MainMenu.cpp">
       <Filter>소스 파일\States</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Chapter 5\State_Paused.cpp">
+    <ClCompile Include="..\..\Chapter 7\State_Paused.cpp">
       <Filter>소스 파일\States</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Chapter 6\SpriteSheet.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Chapter 6\Anim_Base.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Chapter 6\Anim_Directional.cpp">
+    <ClCompile Include="..\..\Chapter 7\Map.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

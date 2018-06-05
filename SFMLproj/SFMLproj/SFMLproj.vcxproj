@@ -19,36 +19,38 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Chapter 5\BaseState.h" />
-    <ClInclude Include="..\..\Chapter 5\EventManager.h" />
-    <ClInclude Include="..\..\Chapter 5\Game.h" />
-    <ClInclude Include="..\..\Chapter 5\StateManager.h" />
-    <ClInclude Include="..\..\Chapter 5\State_Game.h" />
-    <ClInclude Include="..\..\Chapter 5\State_Intro.h" />
-    <ClInclude Include="..\..\Chapter 5\State_MainMenu.h" />
-    <ClInclude Include="..\..\Chapter 5\State_Paused.h" />
-    <ClInclude Include="..\..\Chapter 5\Window.h" />
-    <ClInclude Include="..\..\Chapter 6\Anim_Base.h" />
-    <ClInclude Include="..\..\Chapter 6\Anim_Directional.h" />
-    <ClInclude Include="..\..\Chapter 6\Direction.h" />
-    <ClInclude Include="..\..\Chapter 6\ResourceManager.h" />
-    <ClInclude Include="..\..\Chapter 6\SpriteSheet.h" />
-    <ClInclude Include="..\..\Chapter 6\TextureManager.h" />
-    <ClInclude Include="..\..\Chapter 6\Utilities.h" />
+    <ClInclude Include="..\..\Chapter 7\Anim_Base.h" />
+    <ClInclude Include="..\..\Chapter 7\Anim_Directional.h" />
+    <ClInclude Include="..\..\Chapter 7\BaseState.h" />
+    <ClInclude Include="..\..\Chapter 7\Direction.h" />
+    <ClInclude Include="..\..\Chapter 7\EventManager.h" />
+    <ClInclude Include="..\..\Chapter 7\Game.h" />
+    <ClInclude Include="..\..\Chapter 7\Map.h" />
+    <ClInclude Include="..\..\Chapter 7\ResourceManager.h" />
+    <ClInclude Include="..\..\Chapter 7\SpriteSheet.h" />
+    <ClInclude Include="..\..\Chapter 7\StateManager.h" />
+    <ClInclude Include="..\..\Chapter 7\State_Game.h" />
+    <ClInclude Include="..\..\Chapter 7\State_Intro.h" />
+    <ClInclude Include="..\..\Chapter 7\State_MainMenu.h" />
+    <ClInclude Include="..\..\Chapter 7\State_Paused.h" />
+    <ClInclude Include="..\..\Chapter 7\TextureManager.h" />
+    <ClInclude Include="..\..\Chapter 7\Utilities.h" />
+    <ClInclude Include="..\..\Chapter 7\Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Chapter 5\EventManager.cpp" />
-    <ClCompile Include="..\..\Chapter 5\Game.cpp" />
-    <ClCompile Include="..\..\Chapter 5\Main.cpp" />
-    <ClCompile Include="..\..\Chapter 5\StateManager.cpp" />
-    <ClCompile Include="..\..\Chapter 5\State_Game.cpp" />
-    <ClCompile Include="..\..\Chapter 5\State_Intro.cpp" />
-    <ClCompile Include="..\..\Chapter 5\State_MainMenu.cpp" />
-    <ClCompile Include="..\..\Chapter 5\State_Paused.cpp" />
-    <ClCompile Include="..\..\Chapter 5\Window.cpp" />
-    <ClCompile Include="..\..\Chapter 6\Anim_Base.cpp" />
-    <ClCompile Include="..\..\Chapter 6\Anim_Directional.cpp" />
-    <ClCompile Include="..\..\Chapter 6\SpriteSheet.cpp" />
+    <ClCompile Include="..\..\Chapter 7\Anim_Base.cpp" />
+    <ClCompile Include="..\..\Chapter 7\Anim_Directional.cpp" />
+    <ClCompile Include="..\..\Chapter 7\EventManager.cpp" />
+    <ClCompile Include="..\..\Chapter 7\Game.cpp" />
+    <ClCompile Include="..\..\Chapter 7\Main.cpp" />
+    <ClCompile Include="..\..\Chapter 7\Map.cpp" />
+    <ClCompile Include="..\..\Chapter 7\SpriteSheet.cpp" />
+    <ClCompile Include="..\..\Chapter 7\StateManager.cpp" />
+    <ClCompile Include="..\..\Chapter 7\State_Game.cpp" />
+    <ClCompile Include="..\..\Chapter 7\State_Intro.cpp" />
+    <ClCompile Include="..\..\Chapter 7\State_MainMenu.cpp" />
+    <ClCompile Include="..\..\Chapter 7\State_Paused.cpp" />
+    <ClCompile Include="..\..\Chapter 7\Window.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
