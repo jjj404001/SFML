@@ -25,37 +25,130 @@ Tile * Map::GetTile(unsigned int x, unsigned int y)
 
 TileInfo * Map::GetDefaultTile()
 {
-
+	return &m_defaultTile;
 }
 
 float Map::GetGravity() const
 {
-
+	return m_mapGravity;
 }
 
 unsigned int Map::GetTileSize() const
 {
-
+	return Sheet::Tile_Size;
 }
 
 const sf::Vector2u & Map::GetMapSize() const
 {
-
+	return m_maxMapSize;
 }
 
 const sf::Vector2f & Map::GetPlayerStart() const
 {
-
+	return m_playerStart;
 }
 
 void Map::LoadMap(const std::string & path)
 {
+	std::ifstream file;
+	file.open(Utils::GetWorkingDirectory() + path);
+	if (!file.is_open())
+	{
+		std::cout << "! Cannot open map file: "
+			<< path << std::endl;
+		return;
+	}
 
+	std::string line;
+	while (getline(file, line))
+	{
+		if (line[0] == '|')
+			continue;
+		std::stringstream keystream(line);
+		std::string type;
+		keystream >> type;
+		if (type == "TILE")
+		{
+			int tileId = 0;
+			keystream >> tileId;
+			if (tileId < 0)
+			{
+				std::cout << "! Bad tile id: "
+					<< tileId << std::endl;
+				continue;
+			}
+			auto itr = m_tileSet.find(tileId);
+			if (itr == m_tileSet.end())
+			{
+				std::cout << "! Tile id(" << tileId
+					<< ") was not found in tileset.\n";
+				continue;
+			}
+
+			sf::Vector2i tileCoords;
+			keystream >> tileCoords.x >> tileCoords.y;
+			if (tileCoords.x > m_maxMapSize.x || tileCoords.y > m_maxMapSize.y)
+			{
+				std::cout << "! Tile is out of range: " <<
+					tileCoords.x << " " << tileCoords.y << std::endl;
+				continue;
+			}
+
+			Tile * tile = new Tile();
+			//Bind properties of a tile from a set
+			tile->m_properties = itr->second;
+			if (!m_tileMap.emplace(ConvertCoords(
+				tileCoords.x, tileCoords.y), tile).second)
+			{
+				//Duplicate tile detected!
+				std::cout << "! Duplicate tile! : " << tileCoords.x
+					<< "" << tileCoords.y << std::endl;
+				delete tile;
+				tile = nullptr;
+				continue;
+			}
+			std::string warp;
+			keystream >> warp;
+			tile->m_warp = false;
+			if (warp == "WARP")
+				tile->m_warp = true;
+		}
+		else if (type == "BACKGROUND")
+		{
+			if (m_backgroundTexture != "")
+				continue;
+			keystream >> m_backgroundTexture;
+			if (!m_context->m_textureManager->
+				RequireResource(m_backgroundTexture))
+			{
+				m_backgroundTexture = "";
+				continue;
+			}
+			sf::Texture * texture = m_context->m_textureManager->
+				GetResource(m_backgroundTexture);
+			m_background.setTexture(*texture);
+			sf::Vector2f viewSize = m_currentState->GetView().getSize();
+			sf::Vector2u textureSize = texture->getSize();
+			sf::Vector2f scaleFactors;
+			scaleFactors.x = viewSize.x / textureSize.x;
+			scaleFactors.y = viewSize.y / textureSize.y;
+			m_background.setScale(scaleFactors);
+		}
+		else if (type == "SIZE")
+			keystream >> m_maxMapSize.x >> m_maxMapSize.y;
+		else if (type == "GRAVITY")
+			keystream >> m_mapGravity;
+		else if (type == "DEFAULT_FRICTION")
+			keystream >> m_defaultTile.m_friction.x
+			>> m_defaultTile.m_friction.y;
+		else if (type == "NEXTMAP")
+			keystream >> m_nextMap;
+	}
 }
 
 void Map::LoadNext()
 {
-
+	m_loadNextMap = true;
 }
 
 void Map::Update(float dt)
@@ -120,15 +213,59 @@ unsigned int Map::ConvertCoords(unsigned int x, unsigned int y)
 
 void Map::LoadTiles(const std::string & path)
 {
+	std::ifstream file;
+	file.open(Utils::GetWorkingDirectory() + path);
+	if (!file.is_open())
+	{
+		std::cout << "! Failed loading tile set file: "
+			<< path << std::endl;
+		return;
+	}
 
+	std::string line;
+	while (std::getline(file, line))
+	{
+		if (line[0] == '|')
+			continue;
+		std::stringstream keystream(line);
+		int tileId;
+		keystream >> tileId;
+		if (tileId < 0)
+			continue;
+
+		TileInfo * tile = new TileInfo(m_context, "TileSheet", tileId);
+		keystream >> tile->m_name >> tile->m_friction.x
+			>> tile->m_friction.y >> tile->m_deadly;
+		if (!m_tileSet.emplace(tileId, tile).second)
+		{
+			//Duplicate tile detected!
+			std::cout << "! Duplicate tile type: "
+				<< tile->m_name << std::endl;
+			delete tile;
+		}
+	}
+	file.close();
 }
 
 void Map::PurgeMap()
 {
+	m_tileCount = 0;
+	for (auto & itr : m_tileMap)
+		delete itr.second;
+	m_tileMap.clear();
+	//m_context->m_entityManager->Purge();
 
+	if (m_backgroundTexture == "")
+		return;
+	m_context->m_textureManager->
+		ReleaseResource(m_backgroundTexture);
+	m_backgroundTexture = "";
 }
 
 void Map::PurgeTileSet()
 {
-
+	for (auto & itr : m_tileSet)
+		delete itr.second;
+	m_tileSet.clear();
+	m_tileSetCount = 0;
 }
