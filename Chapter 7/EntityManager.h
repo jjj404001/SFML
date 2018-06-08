@@ -1,72 +1,65 @@
 #ifndef ENTITYMANAGER_H
 #define ENTITYMANAGER_H
 
-#include <string>
-#include <SFML/System/Vector2.hpp>
-#include <SFML/Graphics/Rect.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
+#include <functional>
+#include <unordered_map>
+#include "EntityBase.h"
 
-enum class EntityType{Base, Enemy, Player};
+struct SharedContext;///////////
+class Player; //////////////////
+class Enemy;/////////////////
 
-enum class EntityState{
-	Idle, Walking, Jumping, Attacking, Hurt, Dying};
+using EntityContainer 
+	= std::unordered_map<unsigned int, EntityBase*>;
+using EntityFactory = std::unordered_map<EntityType,
+	std::function<EntityBase*(void)>>;
+using EnemyTypes = std::unordered_map<std::string, std::string>;
 
-class EntityManager;
-struct TileInfo;
-
-class EntityBase
+class EntityManager
 {
 public:
-	EntityBase(EntityManager * entityMgr);
-	virtual ~EntityBase() {}
+	EntityManager(SharedContext * context,
+		unsigned int maxEntities);
+	~EntityManager();
 
-	//... Getters & Setters
-	void SetPosition(const float & x, const float & y);
-	void SetPosition(const sf::Vector2f & pos);
-	void SetSize(const float & x, const float & y);
-	void SetState(const EntityState & state);
+	int Add(const EntityType & type,
+		const std::string & name = "");
+	EntityBase * Find(unsigned int id);
+	EntityBase * Find(const std::string & name);
+	void Remove(unsigned int id);
 
-	void Move(float x, float y);
-	void AddVelocity(float x, float y);
-	void Accelerate(float x, float y);
-	void SetAccelerate(float x, float y);
-	void ApplyFriction(float x, float y);
+	void Update(float dt);
+	void Draw();
 
-	virtual void Update(float dt);
-	virtual void Draw(sf::RenderWindow * wind) = 0;
+	void Purge();
 
-protected:
-	//Methods
-	void UpdateAABB();
-	void CheckCollisions();
-	void ResolveCollisions();
+	SharedContext * GetContext()
+	{
+		return m_context;
+	}
 
-	//Method for what THIS entity does to the collider entity
-	virtual void OnEntityCollision(EntityBase * collider, bool attack) = 0;
+private:
+	template<class T>
+	void RegisterEntity(const EntityType & type)
+	{
+		m_entitiFactory[type] = [this]()->EntityBase*
+		{
+			return new T(this);
+		}
+	}
 
-	//Date mambers
-	std::string m_name;
-	EntityType m_type;
-	unsigned int m_id; // Id in entity manager
-	sf::Vector2f m_position;
-	sf::Vector2f m_positionOld;
-	sf::Vector2f m_velocity;
-	sf::Vector2f m_maxVelocity;
-	sf::Vector2f m_speed;
-	sf::Vector2f m_acceleration;
-	sf::Vector2f m_friction;
+	void ProcessRemovals();
+	void LoadEnemyTypes(const std::string & name);
+	void EntityCollisionCheck();
 
-	TileInfo * m_referenceTile; // Tile underneath entity
-	sf::Vector2f m_size; // Size of collision box
-	sf::FloatRect m_AABB; // Bounding box for collisions
-	EntityState m_state; // Current entity state
+	EntityContainer m_entities;
+	EnemyTypes m_enemyTypes;
+	EntityFactory m_entityFactory;
+	SharedContext * m_context;
+	unsigned int m_idCounter;
+	unsigned int m_maxEntities;
 
-	//Flags for remembering axis collisions
-	bool m_collidingOnX;
-	bool m_collidingOnY;
-
-	Collisions m_collisions;
-	EntityManager * m_entityManager;
+	std::vector<unsigned int> m_entitiesToRemove;
 };
 
 #endif

@@ -81,6 +81,9 @@
     <ClInclude Include="..\..\Chapter 7\Utilities.h">
       <Filter>소스 파일\Managers\ResourceManager</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\EntityBase.h">
+      <Filter>소스 파일\Managers</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Chapter 7\EntityManager.h">
       <Filter>소스 파일\Managers</Filter>
     </ClInclude>
@@ -124,6 +127,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Chapter 7\SpriteSheet.cpp">
       <Filter>소스 파일\Managers\ResourceManager\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 7\EntityBase.cpp">
+      <Filter>소스 파일\Managers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Chapter 7\EntityManager.cpp">
       <Filter>소스 파일\Managers</Filter>
