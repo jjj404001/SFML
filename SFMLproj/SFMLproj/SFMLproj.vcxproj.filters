@@ -16,42 +16,21 @@
     <Filter Include="소스 파일\States">
       <UniqueIdentifier>{918decd2-b7ee-4989-8a5e-c0e7f8cdb7e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Main">
+      <UniqueIdentifier>{c4179e90-c208-4c09-a524-477a2eee8391}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Managers">
+      <UniqueIdentifier>{7f25e61c-4ea4-40c9-aa36-af61145c85cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Managers\ResourceManager">
+      <UniqueIdentifier>{0cbf11c1-0560-49cd-8042-17a217c18d6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Managers\ResourceManager\Texture">
+      <UniqueIdentifier>{0b4ba11f-00b3-4764-83d0-0dde05f6d657}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Chapter 7\Map.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 7\Anim_Base.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 7\Anim_Directional.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 7\Direction.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 7\EventManager.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 7\Game.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 7\ResourceManager.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 7\SpriteSheet.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 7\StateManager.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 7\TextureManager.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 7\Utilities.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 7\Window.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Chapter 7\BaseState.h">
@@ -69,32 +48,44 @@
     <ClInclude Include="..\..\Chapter 7\State_Paused.h">
       <Filter>소스 파일\States</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\Game.h">
+      <Filter>소스 파일\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\Window.h">
+      <Filter>소스 파일\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\EventManager.h">
+      <Filter>소스 파일\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\StateManager.h">
+      <Filter>소스 파일\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\Anim_Base.h">
+      <Filter>소스 파일\Managers\ResourceManager\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\Anim_Directional.h">
+      <Filter>소스 파일\Managers\ResourceManager\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\Direction.h">
+      <Filter>소스 파일\Managers\ResourceManager\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\SpriteSheet.h">
+      <Filter>소스 파일\Managers\ResourceManager\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\ResourceManager.h">
+      <Filter>소스 파일\Managers\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\TextureManager.h">
+      <Filter>소스 파일\Managers\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\Utilities.h">
+      <Filter>소스 파일\Managers\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\EntityManager.h">
+      <Filter>소스 파일\Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Chapter 7\Anim_Base.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Chapter 7\Anim_Directional.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Chapter 7\EventManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Chapter 7\Game.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Chapter 7\Main.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Chapter 7\SpriteSheet.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Chapter 7\StateManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Chapter 7\Window.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Chapter 7\State_Game.cpp">
       <Filter>소스 파일\States</Filter>
     </ClCompile>
@@ -109,6 +100,33 @@
     </ClCompile>
     <ClCompile Include="..\..\Chapter 7\Map.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 7\Main.cpp">
+      <Filter>소스 파일\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 7\Game.cpp">
+      <Filter>소스 파일\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 7\Window.cpp">
+      <Filter>소스 파일\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 7\EventManager.cpp">
+      <Filter>소스 파일\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 7\StateManager.cpp">
+      <Filter>소스 파일\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 7\Anim_Base.cpp">
+      <Filter>소스 파일\Managers\ResourceManager\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 7\Anim_Directional.cpp">
+      <Filter>소스 파일\Managers\ResourceManager\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 7\SpriteSheet.cpp">
+      <Filter>소스 파일\Managers\ResourceManager\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 7\EntityManager.cpp">
+      <Filter>소스 파일\Managers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

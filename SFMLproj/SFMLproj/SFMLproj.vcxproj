@@ -23,6 +23,7 @@
     <ClInclude Include="..\..\Chapter 7\Anim_Directional.h" />
     <ClInclude Include="..\..\Chapter 7\BaseState.h" />
     <ClInclude Include="..\..\Chapter 7\Direction.h" />
+    <ClInclude Include="..\..\Chapter 7\EntityManager.h" />
     <ClInclude Include="..\..\Chapter 7\EventManager.h" />
     <ClInclude Include="..\..\Chapter 7\Game.h" />
     <ClInclude Include="..\..\Chapter 7\Map.h" />
@@ -40,6 +41,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Chapter 7\Anim_Base.cpp" />
     <ClCompile Include="..\..\Chapter 7\Anim_Directional.cpp" />
+    <ClCompile Include="..\..\Chapter 7\EntityManager.cpp" />
     <ClCompile Include="..\..\Chapter 7\EventManager.cpp" />
     <ClCompile Include="..\..\Chapter 7\Game.cpp" />
     <ClCompile Include="..\..\Chapter 7\Main.cpp" />
