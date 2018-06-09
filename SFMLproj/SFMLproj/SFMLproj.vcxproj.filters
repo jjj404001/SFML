@@ -22,6 +22,12 @@
     <Filter Include="소스 파일\Managers">
       <UniqueIdentifier>{7f25e61c-4ea4-40c9-aa36-af61145c85cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Managers\EntityManager">
+      <UniqueIdentifier>{6751bf56-88b7-43b0-92b8-ed7928386126}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Managers\EntityManager\Entity">
+      <UniqueIdentifier>{d3250ce1-71e7-447e-85e7-10aa014200b6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="소스 파일\Managers\ResourceManager">
       <UniqueIdentifier>{0cbf11c1-0560-49cd-8042-17a217c18d6c}</UniqueIdentifier>
     </Filter>
@@ -81,11 +87,20 @@
     <ClInclude Include="..\..\Chapter 7\Utilities.h">
       <Filter>소스 파일\Managers\ResourceManager</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Chapter 7\EntityBase.h">
-      <Filter>소스 파일\Managers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Chapter 7\EntityManager.h">
-      <Filter>소스 파일\Managers</Filter>
+      <Filter>소스 파일\Managers\EntityManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\Character.h">
+      <Filter>소스 파일\Managers\EntityManager\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\EntityBase.h">
+      <Filter>소스 파일\Managers\EntityManager\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\Player.h">
+      <Filter>소스 파일\Managers\EntityManager\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 7\Enemy.h">
+      <Filter>소스 파일\Managers\EntityManager\Entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -128,11 +143,20 @@
     <ClCompile Include="..\..\Chapter 7\SpriteSheet.cpp">
       <Filter>소스 파일\Managers\ResourceManager\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Chapter 7\EntityBase.cpp">
-      <Filter>소스 파일\Managers</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Chapter 7\EntityManager.cpp">
-      <Filter>소스 파일\Managers</Filter>
+      <Filter>소스 파일\Managers\EntityManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 7\Character.cpp">
+      <Filter>소스 파일\Managers\EntityManager\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 7\EntityBase.cpp">
+      <Filter>소스 파일\Managers\EntityManager\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 7\Player.cpp">
+      <Filter>소스 파일\Managers\EntityManager\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 7\Enemy.cpp">
+      <Filter>소스 파일\Managers\EntityManager\Entity</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

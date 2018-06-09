@@ -1,5 +1,6 @@
 #include "State_Game.h"
 #include "StateManager.h"
+#include "Player.h"
 
 void State_Game::OnCreate()
 {
@@ -14,6 +15,17 @@ void State_Game::OnCreate()
 		&State_Game::MainMenu, this);
 	evMgr->AddCallback(StateType::Game, "Key_P",
 		&State_Game::Pause, this);
+
+	sf::Vector2u size = m_stateMgr->
+		GetContext()->m_wind->GetWindowSize();
+	m_view.setSize(size.x, size.y);
+	m_view.setCenter(size.x / 2, size.y / 2);
+	m_view.zoom(0.6f);
+	m_stateMgr->GetContext()->
+		m_wind->GetRenderWindow()->setView(m_view);
+
+	m_gameMap = new Map(m_stateMgr->GetContext(), this);
+	m_gameMap->LoadMap("media/Maps/map1.map");
 }
 
 void State_Game::OnDestroy()
@@ -22,6 +34,9 @@ void State_Game::OnDestroy()
 		GetContext()->m_eventManager;
 	evMgr->RemoveCallback(StateType::Game, "Key_Escape");
 	evMgr->RemoveCallback(StateType::Game, "Key_P");
+
+	delete m_gameMap;
+	m_gameMap = nullptr;
 }
 
 void State_Game::Activate()
@@ -36,25 +51,39 @@ void State_Game::Deactivate()
 
 void State_Game::Update(const sf::Time & time)
 {
-	sf::Vector2u windSize = m_stateMgr->GetContext()
-		->m_wind->GetWindowSize();
+	SharedContext * context = m_stateMgr->GetContext();
+	EntityBase * player = context->m_entityManager->Find("Player");
+	if (!player)
+	{
+		std::cout << "Respawning player...\n";
+		context->m_entityManager->Add(EntityType::Player, "Player");
+		player = context->m_entityManager->Find("Player");
+		player->SetPosition(m_gameMap->GetPlayerStart());
+	}
+	else
+	{
+		m_view.setCenter(player->GetPosition());
+		context->m_wind->GetRenderWindow()->setView(m_view);
+	}
 
-	sf::Vector2u textSize = m_texture.getSize();
+	sf::FloatRect viewSpace = context->m_wind->GetViewSpace();
+	if (viewSpace.left <= 0)
+	{
+		m_view.setCenter(viewSpace.width / 2, m_view.getCenter().y);
+		context->m_wind->GetRenderWindow()->setView(m_view);
+	}
+	else if (viewSpace.left + viewSpace.width >
+		(m_gameMap->GetMapSize().x + 1) * Sheet::Tile_Size)
+	{
+		m_view.setCenter(((m_gameMap->GetMapSize().x + 1) *
+			Sheet::Tile_Size) - (viewSpace.width / 2), 
+			m_view.getCenter().y);
+		context->m_wind->GetRenderWindow()->setView(m_view);
+	}
 
-	if ((m_sprite.getPosition().x > windSize.x -
-		textSize.x && m_increment.x > 0) ||
-		(m_sprite.getPosition().x < 0 && m_increment.x < 0))
-		m_increment.x = -m_increment.x;
-
-	if (m_sprite.getPosition().y > windSize.y - 
-		textSize.y && m_increment.y > 0 ||
-		(m_sprite.getPosition().y < 0 && m_increment.y < 0))
-		m_increment.y = -m_increment.y;
-
-	m_sprite.setPosition(m_sprite.getPosition().x + 
-		(m_increment.x * time.asSeconds()),
-		m_sprite.getPosition().y + 
-		(m_increment.y * time.asSeconds()));
+	m_gameMap->Update(time.asSeconds());
+	m_stateMgr->GetContext()->
+		m_entityManager->Update(time.asSeconds());
 }
 
 void State_Game::Draw()

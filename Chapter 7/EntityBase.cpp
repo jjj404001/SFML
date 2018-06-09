@@ -1,5 +1,9 @@
 #include "EntityBase.h"
 #include "Map.h"
+#include "EntityManager.h"
+
+bool SortCollisions(const CollisionElement & lhs,
+	const CollisionElement & rhs);
 
 EntityBase::EntityBase(EntityManager * entityMgr)
 	: m_entityManager(entityMgr), m_name("BaseEntity"),
@@ -120,7 +124,7 @@ void EntityBase::ApplyFriction(float x, float y)
 
 void EntityBase::Update(float dt)
 {
-	Map * map = m_entityMAnager->GetContext()->m_gameMap;
+	Map * map = m_entityManager->GetContext()->m_gameMap;
 	float gravity = map->GetGravity();
 	Accelerate(0, gravity);
 	AddVelocity(m_acceleration.x * dt, m_acceleration.y * dt);
@@ -247,4 +251,10 @@ void EntityBase::ResolveCollisions()
 	}
 	if (!m_collidingOnY)
 		m_referenceTile = nullptr;
+}
+
+bool SortCollisions(const CollisionElement & lhs,
+	const CollisionElement & rhs)
+{
+	return lhs.m_area > rhs.m_area;
 }

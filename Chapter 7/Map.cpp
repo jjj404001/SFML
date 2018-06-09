@@ -143,6 +143,33 @@ void Map::LoadMap(const std::string & path)
 			>> m_defaultTile.m_friction.y;
 		else if (type == "NEXTMAP")
 			keystream >> m_nextMap;
+		else if (type == "PLAYER")
+		{
+			int playerId = 0;
+			EntityManager * entityMgr = m_context->m_entityManager;
+			if (playerId != -1)
+				continue;
+			playerId = entityMgr->Add(EntityType::Player);
+			if (playerId < 0)
+				continue;
+			float playerX = 0;
+			float playerY = 0;
+			keystream >> playerX >> playerY;
+			entityMgr->Find(playerId)->SetPosition(playerX, playerY);
+		}
+		else if (type == "ENEMY")
+		{
+			EntityManager * entityMgr = m_context->m_entityManager;
+			std::string enemyName;
+			keystream >> enemyName;
+			int enemyId = entityMgr->Add(EntityType::Enemy, enemyName);
+			if (enemyId < 0)
+				continue;
+			float enemyX = 0;
+			float enemyY = 0;
+			keystream >> enemyX >> enemyY;
+			entityMgr->Find(enemyId)->SetPosition(enemyX, enemyY);
+		}
 	}
 }
 
@@ -214,6 +241,9 @@ unsigned int Map::ConvertCoords(unsigned int x, unsigned int y)
 void Map::LoadTiles(const std::string & path)
 {
 	std::ifstream file;
+
+	std::string p(Utils::GetWorkingDirectory() + path);
+
 	file.open(Utils::GetWorkingDirectory() + path);
 	if (!file.is_open())
 	{

@@ -10,16 +10,22 @@
 enum class StateType{
 	Intro = 1, MainMenu, Game, Paused, GameOver, Credits};
 
+class EntityManager;
 class TextureManager;
 class Map;
 
 struct SharedContext {
 	SharedContext() : 
-		m_wind(nullptr), m_eventManager(nullptr) {}
+		m_wind(nullptr), 
+		m_eventManager(nullptr),
+		m_textureManager(nullptr),
+		m_entityManager(nullptr),
+		m_gameMap(nullptr) { }
 
 	Window * m_wind;
 	EventManager * m_eventManager;
 	TextureManager * m_textureManager;
+	EntityManager * m_entityManager;
 	Map * m_gameMap;
 };
 

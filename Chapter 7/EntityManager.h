@@ -4,10 +4,7 @@
 #include <functional>
 #include <unordered_map>
 #include "EntityBase.h"
-
-struct SharedContext;///////////
-class Player; //////////////////
-class Enemy;/////////////////
+#include "StateManager.h"
 
 using EntityContainer 
 	= std::unordered_map<unsigned int, EntityBase*>;
@@ -42,10 +39,10 @@ private:
 	template<class T>
 	void RegisterEntity(const EntityType & type)
 	{
-		m_entitiFactory[type] = [this]()->EntityBase*
+		m_entityFactory[type] = [this]()->EntityBase*
 		{
 			return new T(this);
-		}
+		};
 	}
 
 	void ProcessRemovals();

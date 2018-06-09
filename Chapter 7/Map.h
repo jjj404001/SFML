@@ -3,6 +3,7 @@
 
 #include "StateManager.h"
 #include "TextureManager.h"
+#include "EntityManager.h"
 
 enum Sheet{Tile_Size = 32, Sheet_Width = 256, Sheet_Height = 256};
 

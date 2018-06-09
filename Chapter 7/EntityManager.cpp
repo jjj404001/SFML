@@ -1,6 +1,8 @@
 #include "EntityManager.h"
 #include "StateManager.h"
 #include "Utilities.h"
+#include "Player.h"
+#include "Enemy.h"
 
 EntityManager::EntityManager(SharedContext * context,
 	unsigned int maxEntities)
@@ -18,7 +20,7 @@ EntityManager::~EntityManager()
 }
 
 int EntityManager::Add(const EntityType & type,
-	const std::string & name = "")
+	const std::string & name)
 {
 	auto itr = m_entityFactory.find(type);
 	if (itr == m_entityFactory.end())
@@ -36,7 +38,7 @@ int EntityManager::Add(const EntityType & type,
 		if (itr != m_enemyTypes.end())
 		{
 			Enemy * enemy = (Enemy*)entity;
-			enemy->Load(itr->second());
+			enemy->Load(itr->second);
 		}
 	}
 

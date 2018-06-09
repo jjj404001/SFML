@@ -92,7 +92,7 @@ bool SpriteSheet::LoadSheet(const std::string & file)
 					continue;
 				}
 				Anim_Base * anim = nullptr;
-				if (m_animType == "Directinal")
+				if (m_animType == "Directional")
 					anim = new Anim_Directional();
 				else
 				{

@@ -2,6 +2,7 @@
 #define STATE_GAME_H
 
 #include "BaseState.h"
+#include "Map.h"
 
 class State_Game : public BaseState
 {
@@ -25,7 +26,7 @@ private:
 	sf::Texture m_texture;
 	sf::Sprite m_sprite;
 	sf::Vector2f m_increment;
-
+	Map * m_gameMap;
 };
 
 #endif

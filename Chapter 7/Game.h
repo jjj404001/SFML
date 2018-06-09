@@ -3,6 +3,8 @@
 
 #include "Window.h"
 #include "StateManager.h"
+#include "EntityManager.h"
+#include "TextureManager.h"
 
 class Game
 {
@@ -31,6 +33,9 @@ private:
 
 	sf::Clock m_clock;
 	sf::Time m_elapsed;
+
+	EntityManager m_entityManager;
+	TextureManager m_textureManager;
 };
 
 #endif

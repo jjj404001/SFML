@@ -39,14 +39,11 @@ public:
 	void SetPosition(const sf::Vector2f & pos);
 	void SetSize(const float & x, const float & y);
 	void SetState(const EntityState & state);
-	const std::string & GetName() const
-	{
-		return m_name;
-	}
-
+	const std::string & GetName() const { return m_name; }
 	EntityType GetType() { return m_type; }
-
 	unsigned int GetId() const { return m_id; }
+	EntityState GetState() const { return m_state; }
+	sf::Vector2f GetPosition() const { return m_position; }
 
 	void Move(float x, float y);
 	void AddVelocity(float x, float y);
@@ -62,12 +59,6 @@ protected:
 	void UpdateAABB();
 	void CheckCollisions();
 	void ResolveCollisions();
-
-	bool SortCollisions(const CollisionElement & lhs,
-		const CollisionElement & rhs)
-	{
-		return lhs.m_area > rhs.m_area;
-	}
 
 	//Method for what THIS entity does to the collider entity
 	virtual void OnEntityCollision(EntityBase * collider, bool attack) = 0;

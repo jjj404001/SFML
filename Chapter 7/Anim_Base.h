@@ -20,6 +20,8 @@ public:
 	bool IsInAction();
 	void SetLooping(const bool & loop);
 	void SetName(const std::string & name);
+	const std::string & GetName() { return m_name; }
+	bool IsPlaying() { return m_playing; }
 
 	void Play();
 	void Pause();
