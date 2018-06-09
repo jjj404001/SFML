@@ -44,6 +44,10 @@ public:
 		return m_name;
 	}
 
+	EntityType GetType() { return m_type; }
+
+	unsigned int GetId() const { return m_id; }
+
 	void Move(float x, float y);
 	void AddVelocity(float x, float y);
 	void Accelerate(float x, float y);

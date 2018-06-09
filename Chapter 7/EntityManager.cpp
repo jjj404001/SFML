@@ -1,5 +1,6 @@
 #include "EntityManager.h"
 #include "StateManager.h"
+#include "Utilities.h"
 
 EntityManager::EntityManager(SharedContext * context,
 	unsigned int maxEntities)
@@ -97,15 +98,78 @@ void EntityManager::Purge()
 
 void EntityManager::ProcessRemovals()
 {
-
+	while (m_entitiesToRemove.begin() != m_entitiesToRemove.end())
+	{
+		unsigned int id = m_entitiesToRemove.back();
+		auto itr = m_entities.find(id);
+		if (itr != m_entities.end())
+		{
+			std::cout << "Discarding entity: "
+				<< itr->second->GetId() << std::endl;
+			delete itr->second;
+			m_entities.erase(itr);
+		}
+		m_entitiesToRemove.pop_back();
+	}
 }
 
 void EntityManager::LoadEnemyTypes(const std::string & name)
 {
+	std::ifstream file;
+	file.open(Utils::GetWorkingDirectory() + name);
+	if (!file.is_open())
+		std::cout << "! Cannot open the file: "
+		<< name << std::endl;
 
+	std::string line;
+	while (std::getline(file, line))
+	{
+		if (line[0] == '|')
+			continue;
+		std::stringstream keystream(line);
+		std::string name;
+		std::string charFile;
+		keystream >> name >> charFile;
+		m_enemyTypes.emplace(name, charFile);
+	}
+	file.close();
 }
 
 void EntityManager::EntityCollisionCheck()
 {
+	if (m_entities.empty())
+		return;
+	for (auto itr = m_entities.begin(); 
+		std::next(itr) != m_entities.end(); ++itr)
+	{
+		for (auto itr2 = std::next(itr); itr2 != m_entities.end(); ++itr2)
+		{
+			if (itr->first == itr2->first)
+				continue;
 
+			//Regular AABB bounding box collision
+			if (itr->second->m_AABB.intersects(itr2->second->m_AABB))
+			{
+				itr->second->OnEntityCollision(itr2->second, false);
+				itr2->second->OnEntityCollision(itr->second, false);
+			}
+
+			EntityType t1 = itr->second->GetType();
+			EntityType t2 = itr2->second->GetType();
+
+			if (t1 == EntityType::Player || t1 == EntityType::Enemy)
+			{
+				Character * c1 = (Character *)itr->second;
+				if (c1->m_attackAABB.intersects(itr2->second->m_AABB))
+					c1->OnEntityCollision(itr2->second, true);
+			}
+
+			if (t2 == EntityType::Player || t2 == EntityType::Enemy)
+			{
+				Character * c2 = (Character *)itr2->second;
+				if (c2->m_attackAABB.intersects(itr->second->m_AABB))
+					c2->OnEntityCollision(itr->second, true);
+			}
+		}
+	}
 }
