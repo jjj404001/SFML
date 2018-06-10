@@ -14,7 +14,7 @@ public:
 	BaseState(StateManager * stateManager)
 		: m_stateMgr(stateManager),
 		  m_transparent(false),
-		  m_transcendent(false) {}
+		  m_transcendent(false){}
 	virtual ~BaseState() {}
 
 	virtual void OnCreate() = 0;

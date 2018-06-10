@@ -8,6 +8,7 @@ Character::Character(EntityManager * entityMgr)
 	m_jumpVelocity(250), m_hitpoints(5)
 {
 	m_name = "Character";
+	m_spriteSheet.SetAnimation("Idle", true, true);
 }
 
 void Character::Move(const Direction & dir)

@@ -4,11 +4,6 @@
 
 void State_Game::OnCreate()
 {
-	m_texture.loadFromFile("Mushroom.png");
-	m_sprite.setTexture(m_texture);
-	m_sprite.setPosition(0, 0);
-	m_increment = sf::Vector2f(400.0f, 400.0f);
-
 	EventManager * evMgr = m_stateMgr->GetContext()
 		->m_eventManager;
 	evMgr->AddCallback(StateType::Game, "Key_Escape",
@@ -88,8 +83,8 @@ void State_Game::Update(const sf::Time & time)
 
 void State_Game::Draw()
 {
-	m_stateMgr->GetContext()->m_wind->
-		GetRenderWindow()->draw(m_sprite);
+	m_stateMgr->GetContext()->m_gameMap->Draw();
+	m_stateMgr->GetContext()->m_entityManager->Draw();
 }
 
 void State_Game::MainMenu(EventDetails * details)

@@ -61,10 +61,10 @@ void Player::React(EventDetails * details)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		Move(Direction::Left);
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		Move(Direction::Right);
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		Jump();
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 		Attack();
 }

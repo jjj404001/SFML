@@ -23,9 +23,6 @@ public:
 	void Pause(EventDetails * details);
 
 private:
-	sf::Texture m_texture;
-	sf::Sprite m_sprite;
-	sf::Vector2f m_increment;
 	Map * m_gameMap;
 };
 
