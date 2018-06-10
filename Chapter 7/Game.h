@@ -26,16 +26,18 @@ public:
 	void RestartClock() { m_elapsed = m_clock.restart(); }
 
 private:
-	//Data
 	Window m_window;
+
+	//ORDER IS IMPORTANT/////////////
+	TextureManager m_textureManager;
+	EntityManager m_entityManager;
 	StateManager m_stateManager;
-	SharedContext m_context;
+	/////////////////////////////////
 
 	sf::Clock m_clock;
 	sf::Time m_elapsed;
 
-	EntityManager m_entityManager;
-	TextureManager m_textureManager;
+	SharedContext m_context;
 };
 
 #endif

@@ -10,6 +10,7 @@ class TextureManager
 {
 public:
 	TextureManager() : ResourceManager("Textures.cfg") {}
+	~TextureManager() {}
 
 	sf::Texture * Load(const std::string & path)
 	{

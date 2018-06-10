@@ -143,15 +143,22 @@ void Character::Update(float dt)
 void Character::Draw(sf::RenderWindow * wind)
 {
 	m_spriteSheet.Draw(wind);
+	wind->draw(m_AABBshape);
+	wind->draw(m_attackShape);
 }
 
 void Character::UpdateAttackAABB()
 {
 	m_attackAABB.left =
 		(m_spriteSheet.GetDirection() == Direction::Left ?
-		(m_AABB.left - m_AABB.width) - m_attackAABBoffset.x
-			: (m_AABB.left + m_AABB.width) + m_attackAABBoffset.x);
+		 m_AABB.left - m_attackAABB.width
+			: m_AABB.left + m_AABB.width);
+
 	m_attackAABB.top = m_AABB.top + m_attackAABBoffset.y;
+	m_attackShape.setSize(sf::Vector2f(m_attackAABB.width, m_attackAABB.height));
+	m_attackShape.setPosition(sf::Vector2f(m_attackAABB.left, m_attackAABB.top));
+
+	m_attackShape.setFillColor(sf::Color(128, 0, 0, 128));
 }
 
 void Character::Animate()

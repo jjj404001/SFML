@@ -29,6 +29,7 @@ protected:
 	float m_jumpVelocity;
 	int m_hitpoints;
 	sf::FloatRect m_attackAABB;
+	sf::RectangleShape m_attackShape;
 	sf::Vector2f m_attackAABBoffset;
 };
 

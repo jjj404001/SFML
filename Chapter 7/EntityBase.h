@@ -5,6 +5,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 
 enum class EntityType{Base, Enemy, Player};
 
@@ -78,6 +79,7 @@ protected:
 	TileInfo * m_referenceTile; // Tile underneath entity
 	sf::Vector2f m_size; // Size of collision box
 	sf::FloatRect m_AABB; // Bounding box for collisions
+	sf::RectangleShape m_AABBshape;
 	EntityState m_state; // Current entity state
 
 	//Flags for remembering axis collisions

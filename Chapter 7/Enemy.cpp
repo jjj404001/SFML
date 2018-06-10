@@ -36,7 +36,7 @@ void Enemy::OnEntityCollision(EntityBase * collider, bool attack)
 void Enemy::Update(float dt)
 {
 	Character::Update(dt);
-
+	
 	if (m_hasDestination)
 	{
 		if (abs(m_destination.x - m_position.x) < 16)

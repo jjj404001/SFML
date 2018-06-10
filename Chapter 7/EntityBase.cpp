@@ -157,6 +157,9 @@ void EntityBase::UpdateAABB()
 {
 	m_AABB = sf::FloatRect(m_position.x - (m_size.x / 2),
 		m_position.y - (m_size.y / 2), m_size.x, m_size.y);
+	m_AABBshape.setSize(sf::Vector2f(m_size.x ,m_size.y));
+	m_AABBshape.setPosition(sf::Vector2f(m_AABB.left, m_AABB.top));
+	m_AABBshape.setFillColor(sf::Color(0, 128, 0, 128));
 }
 
 void EntityBase::CheckCollisions()
