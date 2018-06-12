@@ -8,7 +8,7 @@ Character::Character(EntityManager * entityMgr)
 	m_jumpVelocity(250), m_hitpoints(5)
 {
 	m_name = "Character";
-	m_spriteSheet.SetAnimation("Idle", true, true);
+	m_spriteSheet.SetAnimation("Body", "Idle", true, true);
 }
 
 void Character::Move(const Direction & dir)
@@ -167,20 +167,26 @@ void Character::Animate()
 
 	if (state == EntityState::Walking &&
 		m_spriteSheet.GetCurrentAnim()->GetName() != "Walk")
-		m_spriteSheet.SetAnimation("Walk", true, true);
+		m_spriteSheet.SetAnimation("Body", "Walk", true, true);
 	else if (state == EntityState::Jumping &&
 		m_spriteSheet.GetCurrentAnim()->GetName() != "Jump")
-		m_spriteSheet.SetAnimation("Jump", true, false);
+		m_spriteSheet.SetAnimation("Body", "Jump", true, false);
 	else if (state == EntityState::Attacking &&
 		m_spriteSheet.GetCurrentAnim()->GetName() != "Attack")
-		m_spriteSheet.SetAnimation("Attack", true, false);
+	{
+		m_spriteSheet.SetAnimation("Body", "Attack", true, false);
+		if (m_spriteSheet.GetCurrentAnim()->IsInAction())
+		{
+			;///////////////////////
+		}
+	}
 	else if (state == EntityState::Hurt &&
 		m_spriteSheet.GetCurrentAnim()->GetName() != "Hurt")
-		m_spriteSheet.SetAnimation("Hurt", true, false);
+		m_spriteSheet.SetAnimation("Body", "Hurt", true, false);
 	else if (state == EntityState::Dying &&
 		m_spriteSheet.GetCurrentAnim()->GetName() != "Death")
-		m_spriteSheet.SetAnimation("Death", true, false);
+		m_spriteSheet.SetAnimation("Body", "Death", true, false);
 	else if (state == EntityState::Idle &&
 		m_spriteSheet.GetCurrentAnim()->GetName() != "Idle")
-		m_spriteSheet.SetAnimation("Idle", true, true);
+		m_spriteSheet.SetAnimation("Body", "Idle", true, true);
 }

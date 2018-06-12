@@ -7,6 +7,9 @@
 
 class Anim_Base;
 using Animations = std::unordered_map<std::string, Anim_Base*>;
+using CharacterAnim = std::unordered_map<std::string,
+	std::pair<sf::Sprite, Animations>>;
+using CurrentAnim = std::unordered_map<std::string, Anim_Base*>;
 
 class SpriteSheet
 {
@@ -14,10 +17,10 @@ public:
 	SpriteSheet(TextureManager * textMgr);
 	~SpriteSheet();
 
-	void CropSprite(const sf::IntRect & rect);
+	void CropSprite(const std::string & part, const sf::IntRect & rect);
 
 	//... Basic setters & getters
-	void SetSpriteSize(const sf::Vector2i & size);
+	void SetSpriteSize(sf::Sprite * sprite, const sf::Vector2i & size);
 	void SetSpritePosition(const sf::Vector2f & pos);
 	void SetDirection(const Direction & dir);
 	sf::Vector2i GetSpriteSize() { return m_spriteSize; }
@@ -27,7 +30,7 @@ public:
 	void ReleaseSheet();
 
 	Anim_Base * GetCurrentAnim();
-	bool SetAnimation(const std::string & name,
+	bool SetAnimation(const std::string & part, const std::string & name,
 		const bool & play = false, const bool & loop = false);
 
 	void Update(const float & dt);
@@ -35,13 +38,14 @@ public:
 
 private:
 	std::string m_texture;
-	sf::Sprite m_sprite;
+	//sf::Sprite m_sprite;
 	sf::Vector2i m_spriteSize;
 	sf::Vector2f m_spriteScale;
 	Direction m_direction;
 	std::string m_animType;
-	Animations m_animations;
-	Anim_Base * m_animationCurrent;
+	//Animations m_animations;
+	CharacterAnim m_charAnim;
+	CurrentAnim m_currentAnims;
 	TextureManager * m_textureManager;
 };
 
