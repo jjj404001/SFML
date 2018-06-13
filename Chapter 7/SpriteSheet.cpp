@@ -9,13 +9,18 @@ SpriteSheet::SpriteSheet(TextureManager * textMgr)
 SpriteSheet::~SpriteSheet()	{ ReleaseSheet(); }
 
 void SpriteSheet::CropSprite(
-	const std::string & part, const sf::IntRect & rect)
+	const std::string & part,
+	const sf::IntRect & rect)
 {
-	auto itr = m_charAnim.find(part);
-	if (itr == m_charAnim.end())
+	auto itr = m_currentAnims.find(part);
+	if (itr == m_currentAnims.end())
 		return;
 
-	itr->second.first.setTextureRect(rect);
+	auto itr2 = m_charAnim.find(part);
+	if (itr2 == m_charAnim.end())
+		return;
+
+	itr2->second.first.setTextureRect(rect);
 }
 
 //... Basic setters & getters
@@ -80,18 +85,14 @@ bool SpriteSheet::LoadSheet(const std::string & file)
 					continue;
 				}
 				m_texture = texture;
-				//sf::Sprite sprite;
-				//sprite.setTexture(*m_textureManager->GetResource(m_texture));
 			}
 			else if (type == "Size")
 			{
 				keystream >> m_spriteSize.x >> m_spriteSize.y;
-				//SetSpriteSize(m_spriteSize);
 			}
 			else if (type == "Scale")
 			{
 				keystream >> m_spriteScale.x >> m_spriteScale.y;
-				//m_sprite.setScale(m_spriteScale);
 			}
 			else if (type == "AnimationType")
 			{
@@ -100,10 +101,9 @@ bool SpriteSheet::LoadSheet(const std::string & file)
 			else if (type == "Part")
 			{
 				keystream >> part;
-				sf::Sprite tempSprite;
-				Animations tempAnim;
-				m_charAnim.emplace(part, std::make_pair(tempSprite, tempAnim));
-				m_currentAnims.emplace(part, nullptr);
+				m_charAnim.emplace(part, Animations()); /////////////EMPLACE ANIM_BASE
+				m_currentAnims.emplace(part, 
+					std::make_pair(sf::Sprite(), nullptr));
 			}
 			else if (type == "Animation")
 			{
@@ -113,7 +113,7 @@ bool SpriteSheet::LoadSheet(const std::string & file)
 				auto itr = m_charAnim.find(part);
 				if (itr != m_charAnim.end())
 				{
-					if (itr->second.second.find(name) != itr->second.second.end())
+					if (itr->second.find(name) != itr->second.end())
 					{
 						std::cerr << "! Duplicate animation(" << name
 							<< ") in: " << file << std::endl;
@@ -134,6 +134,7 @@ bool SpriteSheet::LoadSheet(const std::string & file)
 				keystream >> *anim;
 				anim->SetSpriteSheet(this);
 				anim->SetName(name);
+				anim->SetPart(part);
 				anim->Reset();
 				itr->second.second.emplace(name, anim);
 

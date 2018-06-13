@@ -20,6 +20,7 @@ public:
 	bool IsInAction();
 	void SetLooping(const bool & loop);
 	void SetName(const std::string & name);
+	void SetPart(const std::string & part);
 	const std::string & GetName() { return m_name; }
 	bool IsPlaying() { return m_playing; }
 
@@ -53,6 +54,7 @@ protected:
 	bool m_loop;
 	bool m_playing;
 	std::string m_name;
+	std::string m_part;
 	SpriteSheet * m_spriteSheet;
 };
 

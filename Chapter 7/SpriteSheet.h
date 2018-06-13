@@ -7,9 +7,11 @@
 
 class Anim_Base;
 using Animations = std::unordered_map<std::string, Anim_Base*>;
-using CharacterAnim = std::unordered_map<std::string,
-	std::pair<sf::Sprite, Animations>>;
-using CurrentAnim = std::unordered_map<std::string, Anim_Base*>;
+using CharacterAnim = std::unordered_map<std::string, Animations>;
+	//Part, Animations(animName, Anim_Base*)
+using CurrentAnim = std::unordered_map<std::string, 
+	std::pair<sf::Sprite, Anim_Base*>>;
+	//Part, (sprite, currentAnim)
 
 class SpriteSheet
 {
@@ -17,7 +19,8 @@ public:
 	SpriteSheet(TextureManager * textMgr);
 	~SpriteSheet();
 
-	void CropSprite(const std::string & part, const sf::IntRect & rect);
+	void CropSprite(const std::string & part,
+		const sf::IntRect & rect);
 
 	//... Basic setters & getters
 	void SetSpriteSize(sf::Sprite * sprite, const sf::Vector2i & size);
@@ -38,12 +41,10 @@ public:
 
 private:
 	std::string m_texture;
-	//sf::Sprite m_sprite;
 	sf::Vector2i m_spriteSize;
 	sf::Vector2f m_spriteScale;
 	Direction m_direction;
 	std::string m_animType;
-	//Animations m_animations;
 	CharacterAnim m_charAnim;
 	CurrentAnim m_currentAnims;
 	TextureManager * m_textureManager;

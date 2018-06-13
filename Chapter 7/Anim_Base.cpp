@@ -38,6 +38,11 @@ void Anim_Base::SetName(const std::string & name)
 	m_name = name;
 }
 
+void Anim_Base::SetPart(const std::string & part)
+{
+	m_part = part;
+}
+
 void Anim_Base::Play() { m_playing = true; }
 
 void Anim_Base::Pause() { m_playing = false; }
