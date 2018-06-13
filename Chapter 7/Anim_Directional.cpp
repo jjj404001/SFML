@@ -29,7 +29,7 @@ void Anim_Directional::CropSprite()
 		(m_frameRow + (short)m_spriteSheet->GetDirection()),
 		m_spriteSheet->GetSpriteSize().x,
 		m_spriteSheet->GetSpriteSize().y);
-	m_spriteSheet->CropSprite(m_part, m_name, rect);
+	m_spriteSheet->CropSprite(m_part, rect);
 }
 
 void Anim_Directional::ReadIn(std::stringstream & stream)

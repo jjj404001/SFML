@@ -21,7 +21,7 @@ public:
 	void SetLooping(const bool & loop);
 	void SetName(const std::string & name);
 	void SetPart(const std::string & part);
-	const std::string & GetName() { return m_name; }
+	const std::string & GetName();
 	bool IsPlaying() { return m_playing; }
 
 	void Play();

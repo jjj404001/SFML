@@ -24,7 +24,7 @@ public:
 
 	//... Basic setters & getters
 	void SetSpriteSize(sf::Sprite * sprite, const sf::Vector2i & size);
-	void SetSpritePosition(const sf::Vector2f & pos);
+	void SetSpritePosition(const std::string & part,const sf::Vector2f & pos);
 	void SetDirection(const Direction & dir);
 	sf::Vector2i GetSpriteSize() { return m_spriteSize; }
 	Direction GetDirection() { return m_direction; }
@@ -32,7 +32,7 @@ public:
 	bool LoadSheet(const std::string & file);
 	void ReleaseSheet();
 
-	Anim_Base * GetCurrentAnim();
+	Anim_Base * GetCurrentAnim(const std::string & part);
 	bool SetAnimation(const std::string & part, const std::string & name,
 		const bool & play = false, const bool & loop = false);
 

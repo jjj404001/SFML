@@ -127,17 +127,17 @@ void Character::Update(float dt)
 	else if (GetState() == EntityState::Attacking ||
 		GetState() == EntityState::Hurt)
 	{
-		if (!m_spriteSheet.GetCurrentAnim()->IsPlaying())
+		if (!m_spriteSheet.GetCurrentAnim("Body")->IsPlaying())
 			SetState(EntityState::Idle);
 	}
 	else if (GetState() == EntityState::Dying)
 	{
-		if (!m_spriteSheet.GetCurrentAnim()->IsPlaying())
+		if (!m_spriteSheet.GetCurrentAnim("Body")->IsPlaying())
 			m_entityManager->Remove(m_id);
 	}
 	Animate();
 	m_spriteSheet.Update(dt);
-	m_spriteSheet.SetSpritePosition(m_position);
+	m_spriteSheet.SetSpritePosition("Body", m_position);
 }
 
 void Character::Draw(sf::RenderWindow * wind)
@@ -165,28 +165,33 @@ void Character::Animate()
 {
 	EntityState state = GetState();
 
+	std::string aa = 
+	m_spriteSheet.GetCurrentAnim("Body")->GetName();
+
+
+
 	if (state == EntityState::Walking &&
-		m_spriteSheet.GetCurrentAnim()->GetName() != "Walk")
+		m_spriteSheet.GetCurrentAnim("Body")->GetName() != "Walk")
 		m_spriteSheet.SetAnimation("Body", "Walk", true, true);
 	else if (state == EntityState::Jumping &&
-		m_spriteSheet.GetCurrentAnim()->GetName() != "Jump")
+		m_spriteSheet.GetCurrentAnim("Body")->GetName() != "Jump")
 		m_spriteSheet.SetAnimation("Body", "Jump", true, false);
 	else if (state == EntityState::Attacking &&
-		m_spriteSheet.GetCurrentAnim()->GetName() != "Attack")
+		m_spriteSheet.GetCurrentAnim("Body")->GetName() != "Attack")
 	{
 		m_spriteSheet.SetAnimation("Body", "Attack", true, false);
-		if (m_spriteSheet.GetCurrentAnim()->IsInAction())
+		if (m_spriteSheet.GetCurrentAnim("Body")->IsInAction())
 		{
 			;///////////////////////
 		}
 	}
 	else if (state == EntityState::Hurt &&
-		m_spriteSheet.GetCurrentAnim()->GetName() != "Hurt")
+		m_spriteSheet.GetCurrentAnim("Body")->GetName() != "Hurt")
 		m_spriteSheet.SetAnimation("Body", "Hurt", true, false);
 	else if (state == EntityState::Dying &&
-		m_spriteSheet.GetCurrentAnim()->GetName() != "Death")
+		m_spriteSheet.GetCurrentAnim("Body")->GetName() != "Death")
 		m_spriteSheet.SetAnimation("Body", "Death", true, false);
 	else if (state == EntityState::Idle &&
-		m_spriteSheet.GetCurrentAnim()->GetName() != "Idle")
+		m_spriteSheet.GetCurrentAnim("Body")->GetName() != "Idle")
 		m_spriteSheet.SetAnimation("Body", "Idle", true, true);
 }

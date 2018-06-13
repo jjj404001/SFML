@@ -38,7 +38,7 @@ void Player::OnEntityCollision(EntityBase * collider, bool attack)
 	{
 		if (m_state != EntityState::Attacking)
 			return;
-		if (!m_spriteSheet.GetCurrentAnim()->IsInAction())
+		if (!m_spriteSheet.GetCurrentAnim("Body")->IsInAction())
 			return;
 		if (collider->GetType() != EntityType::Enemy &&
 			collider->GetType() != EntityType::Player)

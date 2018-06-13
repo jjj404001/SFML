@@ -145,7 +145,7 @@ void Map::LoadMap(const std::string & path)
 			keystream >> m_nextMap;
 		else if (type == "PLAYER")
 		{
-			int playerId = 0;
+			int playerId = -1;
 			EntityManager * entityMgr = m_context->m_entityManager;
 			if (playerId != -1)
 				continue;
