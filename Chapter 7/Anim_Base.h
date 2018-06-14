@@ -53,7 +53,7 @@ protected:
 	float m_elapsedTime;
 	bool m_loop;
 	bool m_playing;
-	std::string m_name;
+	std::string m_animName;
 	std::string m_part;
 	SpriteSheet * m_spriteSheet;
 };

@@ -155,6 +155,7 @@ void Map::LoadMap(const std::string & path)
 			float playerX = 0;
 			float playerY = 0;
 			keystream >> playerX >> playerY;
+			m_playerStart = sf::Vector2f(playerX, playerY);
 			entityMgr->Find(playerId)->SetPosition(playerX, playerY);
 		}
 		else if (type == "ENEMY")

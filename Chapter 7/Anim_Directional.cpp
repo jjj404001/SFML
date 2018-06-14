@@ -3,6 +3,8 @@
 
 void Anim_Directional::FrameStep()
 {
+	//std::cout << m_part << ", " << m_name << ", " <<m_loop << std::endl;
+
 	if (m_frameStart < m_frameEnd)
 		++m_frameCurrent;
 	else
@@ -23,6 +25,7 @@ void Anim_Directional::FrameStep()
 
 void Anim_Directional::CropSprite()
 {
+	//std::cout << "Cropping Sprite: " << m_part << ", " << m_name << std::endl;
 	sf::IntRect rect(
 		m_spriteSheet->GetSpriteSize().x * m_frameCurrent,
 		m_spriteSheet->GetSpriteSize().y * 

@@ -35,7 +35,7 @@ void Anim_Base::SetLooping(const bool & loop)
 
 void Anim_Base::SetName(const std::string & name)
 {
-	m_name = name;
+	m_animName = name;
 }
 
 void Anim_Base::SetPart(const std::string & part)
@@ -43,7 +43,11 @@ void Anim_Base::SetPart(const std::string & part)
 	m_part = part;
 }
 
-const std::string & Anim_Base::GetName() { return m_name; }
+const std::string & Anim_Base::GetName() 
+{ 
+	//std::cout << m_animName << std::endl;
+	return m_animName; 
+}
 
 void Anim_Base::Play() { m_playing = true; }
 

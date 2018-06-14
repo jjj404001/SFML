@@ -157,8 +157,8 @@ bool SpriteSheet::LoadSheet(const std::string & file)
 				if (m_currentAnims.find(part)->second.second)
 					continue;
 
-				m_currentAnims.find(part)->second.second = anim;
-				m_currentAnims.find(part)->second.second->Play();
+				//m_currentAnims.find(part)->second.second = anim;
+				//m_currentAnims.find(part)->second.second->Play();
 			}
 		}
 		sheet.close();
@@ -203,6 +203,7 @@ bool SpriteSheet::SetAnimation(const std::string & part,
 	const std::string & name,
 	const bool & play, const bool & loop)
 {
+	//std::cout << "Setting Animation: " << part << ", " << name << std::endl;;
 	auto body = m_charAnim.find(part);
 	if (body == m_charAnim.end())
 		return false;

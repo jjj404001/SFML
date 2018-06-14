@@ -111,6 +111,9 @@ void Character::Load(const std::string & path)
 void Character::Update(float dt)
 {
 	EntityBase::Update(dt);
+
+	//std::cout << (int)GetState() << std::endl;
+
 	if (m_attackAABB.width != 0 && m_attackAABB.height != 0)
 		UpdateAttackAABB();
 	if (GetState() != EntityState::Dying &&
@@ -138,13 +141,15 @@ void Character::Update(float dt)
 	Animate();
 	m_spriteSheet.Update(dt);
 	m_spriteSheet.SetSpritePosition("Body", m_position);
+	m_spriteSheet.SetSpritePosition("AttackEffect",
+		sf::Vector2f(m_position.x + 32, m_position.y));
 }
 
 void Character::Draw(sf::RenderWindow * wind)
 {
 	m_spriteSheet.Draw(wind);
-	wind->draw(m_AABBshape);
-	wind->draw(m_attackShape);
+	//wind->draw(m_AABBshape);
+	//wind->draw(m_attackShape);
 }
 
 void Character::UpdateAttackAABB()
@@ -164,11 +169,8 @@ void Character::UpdateAttackAABB()
 void Character::Animate()
 {
 	EntityState state = GetState();
-
-	std::string aa = 
-	m_spriteSheet.GetCurrentAnim("Body")->GetName();
-
-
+	
+	//std::cout << m_spriteSheet.GetCurrentAnim("Body")->GetName() << std::endl;
 
 	if (state == EntityState::Walking &&
 		m_spriteSheet.GetCurrentAnim("Body")->GetName() != "Walk")
@@ -193,5 +195,8 @@ void Character::Animate()
 		m_spriteSheet.SetAnimation("Body", "Death", true, false);
 	else if (state == EntityState::Idle &&
 		m_spriteSheet.GetCurrentAnim("Body")->GetName() != "Idle")
+	{
+		std::cout << "aa\n";
 		m_spriteSheet.SetAnimation("Body", "Idle", true, true);
+	}
 }

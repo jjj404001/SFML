@@ -36,6 +36,7 @@ void EntityBase::SetState(const EntityState & state)
 {
 	if (m_state == EntityState::Dying)
 		return;
+	std::cout << (int)m_state << "->" << (int)state << std::endl;
 	m_state = state;
 }
 
