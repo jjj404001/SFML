@@ -8,6 +8,8 @@ Player::Player(EntityManager * entityMgr)
 	Load("Player.char");
 	m_type = EntityType::Player;
 
+	m_spriteSheet.SetAnimation("Idle", true, true);
+
 	EventManager * events = m_entityManager->
 		GetContext()->m_eventManager;
 	events->AddCallback<Player>(StateType::Game,

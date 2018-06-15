@@ -39,6 +39,7 @@ int EntityManager::Add(const EntityType & type,
 		{
 			Enemy * enemy = (Enemy*)entity;
 			enemy->Load(itr->second);
+			enemy->m_spriteSheet.SetAnimation("Idle", true, true);
 		}
 	}
 

@@ -109,8 +109,8 @@ bool SpriteSheet::LoadSheet(const std::string & file)
 
 				if (m_animationCurrent)
 					continue;
-				m_animationCurrent = anim;
-				m_animationCurrent->Play();
+				//m_animationCurrent = anim;
+				//m_animationCurrent->Play();
 			}
 		}
 		sheet.close();
@@ -150,6 +150,7 @@ bool SpriteSheet::SetAnimation(const std::string & name,
 	if (play)
 		m_animationCurrent->Play();
 	m_animationCurrent->CropSprite();
+	std::cout << "Setting Animation: " << name << std::endl;
 	return true;
 }
 
