@@ -101,8 +101,11 @@ bool SpriteSheet::LoadSheet(const std::string & file)
 			{
 				keystream >> part;
 				m_charAnim.emplace(part, Animations());
+				sf::Sprite tempSprite;
+				if (part == "AttackEffect")
+					tempSprite.setColor(sf::Color(255, 255, 255, 0));
 				m_currentAnims.emplace(part, 
-					std::make_pair(sf::Sprite(), nullptr));
+					std::make_pair(tempSprite, nullptr));
 			}
 			else if (type == "Animation")
 			{
@@ -151,14 +154,6 @@ bool SpriteSheet::LoadSheet(const std::string & file)
 					*m_textureManager->GetResource(m_texture));
 				SetSpriteSize(temp, m_spriteSize);
 				temp->setScale(m_spriteScale);
-
-				if (m_currentAnims.find(part) == m_currentAnims.end())
-					continue;
-				if (m_currentAnims.find(part)->second.second)
-					continue;
-
-				m_currentAnims.find(part)->second.second = anim;
-				m_currentAnims.find(part)->second.second->Play();
 			}
 		}
 		sheet.close();
@@ -199,14 +194,12 @@ Anim_Base * SpriteSheet::GetCurrentAnim(const std::string & part)
 		itr->second.second : nullptr);
 }
 
-bool SpriteSheet::SetAnimation(const std::string & part,
+bool SpriteSheet::SetAnimation(
+	const std::string & part,
 	const std::string & name,
-	const bool & play, const bool & loop)
+	const bool & play, 
+	const bool & loop)
 {
-	if (name == "Idle")
-		;
-
-	//std::cout << "Setting Animation: " << part << ", " << name << std::endl;;
 	auto body = m_charAnim.find(part);
 	if (body == m_charAnim.end())
 		return false;
@@ -235,7 +228,6 @@ bool SpriteSheet::SetAnimation(const std::string & part,
 	if (play)
 		tempAnim->Play();
 	tempAnim->CropSprite();
-	std::cout << "Setting Animation: " << part << ", " << name << std::endl;
 	return true;
 }
 
@@ -249,4 +241,16 @@ void SpriteSheet::Draw(sf::RenderWindow * wd)
 {
 	for (auto & itr : m_currentAnims)
 		wd->draw(itr.second.first);
+}
+
+void SpriteSheet::SetTransparent(
+	const std::string & part, bool transparent)
+{
+	auto itr = m_currentAnims.find(part);
+	if (itr == m_currentAnims.end())
+		return;
+
+	unsigned int tp = (transparent ? 0 : 255);
+
+	itr->second.first.setColor(sf::Color(255, 100, 100, tp));
 }

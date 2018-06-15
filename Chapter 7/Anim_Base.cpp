@@ -45,15 +45,30 @@ void Anim_Base::SetPart(const std::string & part)
 
 const std::string & Anim_Base::GetName() 
 { 
-	//std::cout << m_animName << std::endl;
 	return m_animName; 
 }
 
-void Anim_Base::Play() { m_playing = true; }
+void Anim_Base::Play() 
+{ 
+	if (m_part == "AttackEffect")
+		m_spriteSheet->SetTransparent(m_part, false);
+	m_playing = true; 
+}
 
- void Anim_Base::Pause() { m_playing = false; }
+ void Anim_Base::Pause() 
+ { 
+	 if (m_part == "AttackEffect")
+		 m_spriteSheet->SetTransparent(m_part, true);
+	 m_playing = false; 
+ }
 
-void Anim_Base::Stop(){ m_playing = false; Reset(); }
+void Anim_Base::Stop()
+{
+	if (m_part == "AttackEffect")
+		m_spriteSheet->SetTransparent(m_part, true);
+	m_playing = false; 
+	Reset(); 
+}
 
 void Anim_Base::Reset()
 {

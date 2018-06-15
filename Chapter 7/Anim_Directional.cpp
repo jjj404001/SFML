@@ -3,8 +3,6 @@
 
 void Anim_Directional::FrameStep()
 {
-	//std::cout << m_part << ", " << m_animName << ", " << m_frameCurrent << std::endl;
-
 	if (m_frameStart < m_frameEnd)
 		++m_frameCurrent;
 	else
@@ -13,6 +11,11 @@ void Anim_Directional::FrameStep()
 	if ((m_frameStart < m_frameEnd && m_frameCurrent > m_frameEnd) ||
 		(m_frameStart > m_frameEnd && m_frameCurrent < m_frameEnd))
 	{
+		if (m_part == "AttackEffect")
+		{
+			Stop();
+			return;
+		}
 		if (m_loop)
 		{
 			m_frameCurrent = m_frameStart;
@@ -25,7 +28,6 @@ void Anim_Directional::FrameStep()
 
 void Anim_Directional::CropSprite()
 {
-	//std::cout << "Cropping Sprite: " << m_part << ", " << m_name << std::endl;
 	sf::IntRect rect(
 		m_spriteSheet->GetSpriteSize().x * m_frameCurrent,
 		m_spriteSheet->GetSpriteSize().y * 
@@ -33,7 +35,6 @@ void Anim_Directional::CropSprite()
 		m_spriteSheet->GetSpriteSize().x,
 		m_spriteSheet->GetSpriteSize().y);
 	m_spriteSheet->CropSprite(m_part, rect);
-	//std::cout << "x: " << rect.left << ", " << "y: " << rect.top << std::endl;
 }
 
 void Anim_Directional::ReadIn(std::stringstream & stream)

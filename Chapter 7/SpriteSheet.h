@@ -26,6 +26,7 @@ public:
 	void SetSpriteSize(sf::Sprite * sprite, const sf::Vector2i & size);
 	void SetSpritePosition(const std::string & part,const sf::Vector2f & pos);
 	void SetDirection(const Direction & dir);
+	void SetTransparent(const std::string & part, bool transparent);
 	sf::Vector2i GetSpriteSize() { return m_spriteSize; }
 	Direction GetDirection() { return m_direction; }
 
