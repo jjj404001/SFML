@@ -3,7 +3,7 @@
 
 void Anim_Directional::FrameStep()
 {
-	//std::cout << m_part << ", " << m_name << ", " <<m_loop << std::endl;
+	//std::cout << m_part << ", " << m_animName << ", " << m_frameCurrent << std::endl;
 
 	if (m_frameStart < m_frameEnd)
 		++m_frameCurrent;
@@ -33,6 +33,7 @@ void Anim_Directional::CropSprite()
 		m_spriteSheet->GetSpriteSize().x,
 		m_spriteSheet->GetSpriteSize().y);
 	m_spriteSheet->CropSprite(m_part, rect);
+	//std::cout << "x: " << rect.left << ", " << "y: " << rect.top << std::endl;
 }
 
 void Anim_Directional::ReadIn(std::stringstream & stream)

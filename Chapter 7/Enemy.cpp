@@ -4,6 +4,7 @@ Enemy::Enemy(EntityManager * entityMgr)
 	: Character(entityMgr), m_hasDestination(false)
 {
 	m_type = EntityType::Enemy;
+	//m_spriteSheet.SetAnimation("AttackEffect", "Normal", true, false);
 }
 
 Enemy::~Enemy() { }

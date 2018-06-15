@@ -7,7 +7,7 @@ Player::Player(EntityManager * entityMgr)
 {
 	Load("Player.char");
 	m_type = EntityType::Player;
-
+	//m_spriteSheet.SetAnimation("Body", "Idle", true, true);
 	EventManager * events = m_entityManager->
 		GetContext()->m_eventManager;
 	events->AddCallback<Player>(StateType::Game,
@@ -61,10 +61,11 @@ void Player::React(EventDetails * details)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		Move(Direction::Left);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		Move(Direction::Right);
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+		Attack();
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		Jump();
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-		Attack();
 }

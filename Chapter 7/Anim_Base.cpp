@@ -51,7 +51,7 @@ const std::string & Anim_Base::GetName()
 
 void Anim_Base::Play() { m_playing = true; }
 
-void Anim_Base::Pause() { m_playing = false; }
+ void Anim_Base::Pause() { m_playing = false; }
 
 void Anim_Base::Stop(){ m_playing = false; Reset(); }
 

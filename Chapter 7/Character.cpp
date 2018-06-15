@@ -9,6 +9,7 @@ Character::Character(EntityManager * entityMgr)
 {
 	m_name = "Character";
 	m_spriteSheet.SetAnimation("Body", "Idle", true, true);
+	//m_spriteSheet.SetAnimation("AttackEffect", "Normal", true, false);
 }
 
 void Character::Move(const Direction & dir)
@@ -169,18 +170,25 @@ void Character::UpdateAttackAABB()
 void Character::Animate()
 {
 	EntityState state = GetState();
-	
+
 	//std::cout << m_spriteSheet.GetCurrentAnim("Body")->GetName() << std::endl;
 
 	if (state == EntityState::Walking &&
 		m_spriteSheet.GetCurrentAnim("Body")->GetName() != "Walk")
+	{
+		//std::cout << "Setting Animation: Body, Walk\n";
 		m_spriteSheet.SetAnimation("Body", "Walk", true, true);
+	}
 	else if (state == EntityState::Jumping &&
 		m_spriteSheet.GetCurrentAnim("Body")->GetName() != "Jump")
+	{
+		//std::cout << "Setting Animation: Body, Jump\n";
 		m_spriteSheet.SetAnimation("Body", "Jump", true, false);
+	}
 	else if (state == EntityState::Attacking &&
 		m_spriteSheet.GetCurrentAnim("Body")->GetName() != "Attack")
 	{
+ 		//std::cout << "Setting Animation: Body, Attack\n";
 		m_spriteSheet.SetAnimation("Body", "Attack", true, false);
 		if (m_spriteSheet.GetCurrentAnim("Body")->IsInAction())
 		{
@@ -189,14 +197,21 @@ void Character::Animate()
 	}
 	else if (state == EntityState::Hurt &&
 		m_spriteSheet.GetCurrentAnim("Body")->GetName() != "Hurt")
+	{
+		//std::cout << "Setting Animation: Body, Hurt\n";
 		m_spriteSheet.SetAnimation("Body", "Hurt", true, false);
+	}
 	else if (state == EntityState::Dying &&
 		m_spriteSheet.GetCurrentAnim("Body")->GetName() != "Death")
+	{
+		//std::cout << "Setting Animation: Body, Death\n";
 		m_spriteSheet.SetAnimation("Body", "Death", true, false);
+	}
 	else if (state == EntityState::Idle &&
 		m_spriteSheet.GetCurrentAnim("Body")->GetName() != "Idle")
 	{
-		std::cout << "aa\n";
+		//std::cout << "Setting Animation: Body, Idle\n";
 		m_spriteSheet.SetAnimation("Body", "Idle", true, true);
 	}
 }
+		
