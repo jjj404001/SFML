@@ -145,17 +145,15 @@ void Map::LoadMap(const std::string & path)
 			keystream >> m_nextMap;
 		else if (type == "PLAYER")
 		{
-			int playerId = 0;
+			int playerId = -1;
 			EntityManager * entityMgr = m_context->m_entityManager;
 			if (playerId != -1)
 				continue;
 			playerId = entityMgr->Add(EntityType::Player);
 			if (playerId < 0)
 				continue;
-			float playerX = 0;
-			float playerY = 0;
-			keystream >> playerX >> playerY;
-			entityMgr->Find(playerId)->SetPosition(playerX, playerY);
+			keystream >> m_playerStart.x >> m_playerStart.y;
+			entityMgr->Find(playerId)->SetPosition(m_playerStart);
 		}
 		else if (type == "ENEMY")
 		{

@@ -16,6 +16,7 @@ public:
 	void Attack();
 	void GetHurt(const int damage);
 	void Load(const std::string & path);
+	SpriteSheet * GetSheet() { return &m_spriteSheet; }
 
 	virtual void OnEntityCollision(EntityBase * collider, bool attack) = 0;
 	virtual void Update(float dt);
