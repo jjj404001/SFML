@@ -19,16 +19,47 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Chapter 7\Anim_Base.h" />
+    <ClInclude Include="..\..\Chapter 7\Anim_Directional.h" />
+    <ClInclude Include="..\..\Chapter 7\BaseState.h" />
+    <ClInclude Include="..\..\Chapter 7\Character.h" />
+    <ClInclude Include="..\..\Chapter 7\Direction.h" />
+    <ClInclude Include="..\..\Chapter 7\Enemy.h" />
+    <ClInclude Include="..\..\Chapter 7\EntityBase.h" />
+    <ClInclude Include="..\..\Chapter 7\EntityManager.h" />
+    <ClInclude Include="..\..\Chapter 7\EventManager.h" />
     <ClInclude Include="..\..\Chapter 7\Game.h" />
+    <ClInclude Include="..\..\Chapter 7\Map.h" />
+    <ClInclude Include="..\..\Chapter 7\Player.h" />
+    <ClInclude Include="..\..\Chapter 7\ResourceManager.h" />
+    <ClInclude Include="..\..\Chapter 7\SpriteSheet.h" />
+    <ClInclude Include="..\..\Chapter 7\StateManager.h" />
+    <ClInclude Include="..\..\Chapter 7\State_Game.h" />
+    <ClInclude Include="..\..\Chapter 7\State_Intro.h" />
+    <ClInclude Include="..\..\Chapter 7\State_MainMenu.h" />
+    <ClInclude Include="..\..\Chapter 7\State_Paused.h" />
+    <ClInclude Include="..\..\Chapter 7\TextureManager.h" />
+    <ClInclude Include="..\..\Chapter 7\Utilities.h" />
     <ClInclude Include="..\..\Chapter 7\Window.h" />
-    <ClInclude Include="..\..\Chapter 8\Bitmask.h" />
-    <ClInclude Include="..\..\Chapter 8\C_Base.h" />
-    <ClInclude Include="..\..\Chapter 8\C_Position.h" />
-    <ClInclude Include="..\..\Chapter 8\ECS_Types.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Chapter 7\Anim_Base.cpp" />
+    <ClCompile Include="..\..\Chapter 7\Anim_Directional.cpp" />
+    <ClCompile Include="..\..\Chapter 7\Character.cpp" />
+    <ClCompile Include="..\..\Chapter 7\Enemy.cpp" />
+    <ClCompile Include="..\..\Chapter 7\EntityBase.cpp" />
+    <ClCompile Include="..\..\Chapter 7\EntityManager.cpp" />
+    <ClCompile Include="..\..\Chapter 7\EventManager.cpp" />
     <ClCompile Include="..\..\Chapter 7\Game.cpp" />
     <ClCompile Include="..\..\Chapter 7\Main.cpp" />
+    <ClCompile Include="..\..\Chapter 7\Map.cpp" />
+    <ClCompile Include="..\..\Chapter 7\Player.cpp" />
+    <ClCompile Include="..\..\Chapter 7\SpriteSheet.cpp" />
+    <ClCompile Include="..\..\Chapter 7\StateManager.cpp" />
+    <ClCompile Include="..\..\Chapter 7\State_Game.cpp" />
+    <ClCompile Include="..\..\Chapter 7\State_Intro.cpp" />
+    <ClCompile Include="..\..\Chapter 7\State_MainMenu.cpp" />
+    <ClCompile Include="..\..\Chapter 7\State_Paused.cpp" />
     <ClCompile Include="..\..\Chapter 7\Window.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
