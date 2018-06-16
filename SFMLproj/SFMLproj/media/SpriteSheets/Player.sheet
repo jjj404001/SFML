@@ -11,6 +11,6 @@ Animation Jump 0 3 4 0.2 -1 -1
 Animation Attack 0 4 6 0.08 2 3
 Animation Hurt 0 2 8 0.2 -1 -1
 Animation Death 0 8 10 0.15 -1 -1
-|
+
 Part AttackEffect
-Animation Normal 0 2 12 0.05 -1 -1
+Animation Normal 0 2 12 0.06 -1 -1

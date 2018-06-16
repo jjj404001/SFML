@@ -146,10 +146,13 @@ void Character::Update(float dt)
 
 	if(m_spriteSheet.GetDirection() == Direction::Left)
 		m_spriteSheet.SetSpritePosition("AttackEffect",
-			sf::Vector2f(m_position.x - 26, m_position.y));
+			sf::Vector2f(m_position.x - m_attackAABB.width
+				- m_attackAABBoffset.x, m_position.y));
+
 	else if(m_spriteSheet.GetDirection() == Direction::Right)
 		m_spriteSheet.SetSpritePosition("AttackEffect",
-			sf::Vector2f(m_position.x + 26, m_position.y));
+			sf::Vector2f(m_position.x + m_attackAABB.width
+				+ m_attackAABBoffset.x, m_position.y));
 }
 
 void Character::Draw(sf::RenderWindow * wind)
@@ -163,8 +166,8 @@ void Character::UpdateAttackAABB()
 {
 	m_attackAABB.left =
 		(m_spriteSheet.GetDirection() == Direction::Left ?
-		 m_AABB.left - m_attackAABB.width
-			: m_AABB.left + m_AABB.width);
+		 m_AABB.left - m_attackAABB.width - m_attackAABBoffset.x
+			: m_AABB.left + m_AABB.width + m_attackAABBoffset.x);
 
 	m_attackAABB.top = m_AABB.top + m_attackAABBoffset.y;
 	m_attackShape.setSize(sf::Vector2f(m_attackAABB.width, m_attackAABB.height));
