@@ -3,6 +3,14 @@
 
 #include <stdint.h>
 
+// a << 3	moves bits to the left by 3 
+// a >> 3	moves bits to the right by 3
+// ~a			switches 1 to 0, 0 to 1
+// a | b		0100 | 1011 = 1111
+// a ^ b		0100 ^ 1001 = 1101
+// a & b		1100 & 1001 = 1000
+
+
 using Bitset = uint32_t;
 class Bitmask 
 {
@@ -26,26 +34,31 @@ public:
 		return ((m_bits&(1 << pos)) != 0);
 	}
 
+	//Set a specific bit to 1
 	void  TurnOnBit(const unsigned int & pos)
 	{
 		m_bits |= 1 << pos;
 	}
 
+	//Merge two bitsets
 	void  TurnOnBit(const Bitset & bits)
 	{
 		m_bits |= bits;
 	}
 
+	//Set a specific bit to 0
 	void ClearBit(const unsigned int & pos)
 	{
 		m_bits &= ~(1 << pos);
 	}
 
+	//Toggle a specific bit
 	void ToggleBit(const unsigned int & pos)
 	{
 		m_bits ^= 1 << pos;
 	}
 
+	//Set all the bits to 0
 	void Clear() { m_bits = 0; }
 
 private:
