@@ -26,6 +26,8 @@
     <ClInclude Include="..\..\Chapter 8\C_Position.h" />
     <ClInclude Include="..\..\Chapter 8\ECS_Types.h" />
     <ClInclude Include="..\..\Chapter 8\EntityManager.h" />
+    <ClInclude Include="..\..\Chapter 8\EventQueue.h" />
+    <ClInclude Include="..\..\Chapter 8\S_Base.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Chapter 7\Game.cpp" />

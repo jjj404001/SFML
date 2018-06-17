@@ -27,7 +27,7 @@ public:
 
 	int AddEntity(const Bitmask & mask);
 	int AddEntity(const std::string & entityFile);
-	bool RemoveEntity(const EntityId & entity);
+	bool RemoveEntity(const EntityId & id);
 
 	bool AddComponent(const EntityId & entity,
 		const Component & component);
@@ -47,7 +47,8 @@ public:
 		//Component exists.
 		auto & container = itr->second.second;
 		auto component = std::find_if(container.begin(), container.end(),
-			[&component](C_Base* c) {return c->GetType() = component; });
+			[&component](C_Base* c) 
+			{ return c->GetType() == component; });
 
 		return (component != container.end() ?
 			dynamic_cast<T*>(*component) : nullptr);
@@ -72,7 +73,7 @@ private:
 	EntityContainer m_entities;
 	ComponentFactory m_cFactory;
 
-	SystemManager * m_system;
+	SystemManager * m_systems;
 	TextureManager * m_texutreManager;
 };
 

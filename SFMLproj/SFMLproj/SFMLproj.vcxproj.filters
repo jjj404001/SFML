@@ -16,6 +16,12 @@
     <Filter Include="소스 파일\Main">
       <UniqueIdentifier>{c4179e90-c208-4c09-a524-477a2eee8391}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Components">
+      <UniqueIdentifier>{052eefaf-ce00-4020-9614-0ccc81578678}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Systems">
+      <UniqueIdentifier>{ce7bb212-1afe-4a72-b1a7-30b7a6ef2df8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Chapter 7\Game.h">
@@ -27,17 +33,23 @@
     <ClInclude Include="..\..\Chapter 8\ECS_Types.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Chapter 8\C_Base.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Chapter 8\C_Position.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Chapter 8\Bitmask.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Chapter 8\EntityManager.h">
       <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 8\EventQueue.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 8\C_Base.h">
+      <Filter>소스 파일\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 8\C_Position.h">
+      <Filter>소스 파일\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 8\S_Base.h">
+      <Filter>소스 파일\Systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
