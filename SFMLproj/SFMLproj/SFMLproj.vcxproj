@@ -25,11 +25,13 @@
     <ClInclude Include="..\..\Chapter 8\C_Base.h" />
     <ClInclude Include="..\..\Chapter 8\C_Position.h" />
     <ClInclude Include="..\..\Chapter 8\ECS_Types.h" />
+    <ClInclude Include="..\..\Chapter 8\EntityManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Chapter 7\Game.cpp" />
     <ClCompile Include="..\..\Chapter 7\Main.cpp" />
     <ClCompile Include="..\..\Chapter 7\Window.cpp" />
+    <ClCompile Include="..\..\Chapter 8\EntityManager.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -105,6 +107,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>SFML_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\libs\SFML-2.4.2\lib</AdditionalLibraryDirectories>
@@ -132,6 +135,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

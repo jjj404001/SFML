@@ -36,6 +36,9 @@
     <ClInclude Include="..\..\Chapter 8\Bitmask.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Chapter 8\EntityManager.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Chapter 7\Main.cpp">
@@ -46,6 +49,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Chapter 7\Window.cpp">
       <Filter>소스 파일\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 8\EntityManager.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -10,7 +10,6 @@
 // a ^ b		0100 ^ 1001 = 1101
 // a & b		1100 & 1001 = 1000
 
-
 using Bitset = uint32_t;
 class Bitmask 
 {
