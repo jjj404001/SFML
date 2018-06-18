@@ -3,8 +3,9 @@
 
 #include <vector>
 #include "EventQueue.h"
+#include "Observer.h"
+#include "ECS_Types.h"
 
-using System = unsigned int;
 using EntityId = unsigned int;
 class Bitmask;
 
@@ -12,7 +13,7 @@ using EntityList = std::vector<EntityId>;
 using Requirements = std::vector<Bitmask>;
 
 class SystemManager;
-class S_Base
+class S_Base : public Observer
 {
 public:
 	S_Base(const System & id, SystemManager * systemMgr);

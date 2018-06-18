@@ -13,14 +13,20 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="소스 파일\Main">
-      <UniqueIdentifier>{c4179e90-c208-4c09-a524-477a2eee8391}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Components">
       <UniqueIdentifier>{052eefaf-ce00-4020-9614-0ccc81578678}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Systems">
       <UniqueIdentifier>{ce7bb212-1afe-4a72-b1a7-30b7a6ef2df8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Main">
+      <UniqueIdentifier>{c4179e90-c208-4c09-a524-477a2eee8391}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Managers">
+      <UniqueIdentifier>{7be16552-c028-4493-a9b6-36dad9d94e1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Message Handler">
+      <UniqueIdentifier>{67786941-4fe2-45bd-ad55-1dc555184555}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -36,9 +42,6 @@
     <ClInclude Include="..\..\Chapter 8\Bitmask.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Chapter 8\EntityManager.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Chapter 8\EventQueue.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
@@ -51,17 +54,23 @@
     <ClInclude Include="..\..\Chapter 8\S_Base.h">
       <Filter>소스 파일\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Chapter 8\MessageHandler.h">
-      <Filter>소스 파일</Filter>
+    <ClInclude Include="..\..\Chapter 8\EntityManager.h">
+      <Filter>소스 파일\Managers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Chapter 8\Observer.h">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Message Handler</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Chapter 8\Communicator.h">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Message Handler</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Chapter 8\EntityMessage.h">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Message Handler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 8\MessageHandler.h">
+      <Filter>소스 파일\Message Handler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 8\SystemManager.h">
+      <Filter>소스 파일\Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -74,11 +83,14 @@
     <ClCompile Include="..\..\Chapter 7\Window.cpp">
       <Filter>소스 파일\Main</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Chapter 8\EntityManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Chapter 8\S_Base.cpp">
       <Filter>소스 파일\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 8\EntityManager.cpp">
+      <Filter>소스 파일\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 8\SystemManager.cpp">
+      <Filter>소스 파일\Managers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
