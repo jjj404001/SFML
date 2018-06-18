@@ -2,6 +2,7 @@
 #define S_BASE_H
 
 #include <vector>
+#include "EventQueue.h"
 
 using System = unsigned int;
 using EntityId = unsigned int;
@@ -23,8 +24,12 @@ public:
 
 	System GetId();
 
-	bool FitsRequirements(const Bitmask & entity);
+	bool FitsRequirements(const Bitmask & bits);
 	void Purge();
+
+	virtual void Update(float dt) = 0;
+	virtual void HandleEvent(const EntityId & entity,
+		const EntityEvent & event) = 0;
 
 protected:
 	System m_id;

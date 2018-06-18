@@ -51,6 +51,18 @@
     <ClInclude Include="..\..\Chapter 8\S_Base.h">
       <Filter>소스 파일\Systems</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Chapter 8\MessageHandler.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 8\Observer.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 8\Communicator.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 8\EntityMessage.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Chapter 7\Main.cpp">
@@ -64,6 +76,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Chapter 8\EntityManager.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 8\S_Base.cpp">
+      <Filter>소스 파일\Systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
