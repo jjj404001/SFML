@@ -1,4 +1,5 @@
 #include <fstream>
+#include "SystemManager.h"
 #include "EntityManager.h"
 #include "C_Position.h"
 #include "Utilities.h"
@@ -142,7 +143,7 @@ bool EntityManager::AddComponent(const EntityId & entity,
 	itr->second.first.TurnOnBit((unsigned int)component);
 
 	//Notifying the system manager of a modified entity
-	m_systems->EntityModifies(entity, itr->second.first);
+	m_systems->EntityModified(entity, itr->second.first);
 	return true;
 
 }
@@ -170,7 +171,7 @@ bool EntityManager::RemoveComponent(const EntityId & entity,
 	container.erase(cp);
 	itr->second.first.ClearBit((unsigned int)component);
 
-	m_systems->EntityModifies(entity, itr->second.first);
+	m_systems->EntityModified(entity, itr->second.first);
 	return true;
 }
 

@@ -28,6 +28,12 @@
     <Filter Include="소스 파일\Message Handler">
       <UniqueIdentifier>{67786941-4fe2-45bd-ad55-1dc555184555}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Components\Sprite Sheet">
+      <UniqueIdentifier>{8175c86d-50d5-4cbb-a763-ecf2f24292bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Components\Sprite Sheet\Animation">
+      <UniqueIdentifier>{529a7ade-9eb5-40a1-805b-067db26658ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Chapter 7\Game.h">
@@ -72,6 +78,27 @@
     <ClInclude Include="..\..\Chapter 8\SystemManager.h">
       <Filter>소스 파일\Managers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Chapter 8\C_Drawable.h">
+      <Filter>소스 파일\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 8\C_SpriteSheet.h">
+      <Filter>소스 파일\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 8\SpriteSheet.h">
+      <Filter>소스 파일\Components\Sprite Sheet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 8\Anim_Base.h">
+      <Filter>소스 파일\Components\Sprite Sheet\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 8\Anim_Directional.h">
+      <Filter>소스 파일\Components\Sprite Sheet\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 8\Direction.h">
+      <Filter>소스 파일\Components\Sprite Sheet\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Chapter 8\S_Renderer.h">
+      <Filter>소스 파일\Systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Chapter 7\Main.cpp">
@@ -91,6 +118,18 @@
     </ClCompile>
     <ClCompile Include="..\..\Chapter 8\SystemManager.cpp">
       <Filter>소스 파일\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 8\SpriteSheet.cpp">
+      <Filter>소스 파일\Components\Sprite Sheet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 8\Anim_Base.cpp">
+      <Filter>소스 파일\Components\Sprite Sheet\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 8\Anim_Directional.cpp">
+      <Filter>소스 파일\Components\Sprite Sheet\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Chapter 8\S_Renderer.cpp">
+      <Filter>소스 파일\Systems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

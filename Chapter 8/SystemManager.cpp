@@ -62,26 +62,47 @@ void SystemManager::HandleEvents()
 
 void SystemManager::Draw(Window * wind, unsigned int elevation)
 {
-
+	auto itr = m_systems.find(System::Renderer);
+	if (itr == m_systems.end())
+		return;
+	S_Renderer * system = (S_Renderer*)itr->second;
+	system->Render(wind, elevation);
 }
 
 void SystemManager::EntityModified(const EntityId & entity,
 	const Bitmask & bits)
 {
-
+	for (auto & itr : m_systems)
+	{
+		S_Base * system = itr.second;
+		if (system->FitsRequirements(bits))
+		{
+			if (!system->HasEntity(entity))
+				system->AddEntity(entity);
+		}
+		else
+		{
+			if (system->HasEntity(entity))
+				system->RemoveEntity(entity);
+		}
+	}
 }
 
 void SystemManager::RemoveEntity(const EntityId & entity)
 {
-
+	for (auto & system : m_systems)
+		system.second->RemoveEntity(entity);
 }
 
 void SystemManager::PurgeEntities()
 {
-
+	for (auto & system : m_systems)
+		system.second->Purge();
 }
 
 void SystemManager::PurgeSystems()
 {
-
+	for (auto & system : m_systems)
+		delete system.second;
+	m_systems.clear();
 }
