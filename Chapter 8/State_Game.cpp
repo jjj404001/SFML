@@ -3,6 +3,7 @@
 #include "Map.h"
 #include "SystemManager.h"
 #include "C_Position.h"
+#include "Direction.h"
 
 void State_Game::OnCreate()
 {
@@ -66,7 +67,12 @@ void State_Game::Update(const sf::Time & time)
 
 void State_Game::Draw()
 {
-	
+	for (unsigned int i = 0; i < Sheet::Num_Layers; ++i)
+	{
+		m_gameMap->Draw(i);
+		m_stateMgr->GetContext()->m_systemManager->
+			Draw(m_stateMgr->GetContext()->m_wind, i);
+	}
 }
 
 void State_Game::MainMenu(EventDetails * details)
@@ -81,7 +87,19 @@ void State_Game::Pause(EventDetails * details)
 
 void State_Game::PlayerMove(EventDetails * details)
 {
+	Message msg((MessageType)EntityMessage::Move);
+	if (details->m_name == "Player_MoveLeft")
+		msg.m_int = (int)Direction::Left;
+	else if (details->m_name == "Player_MoveRight")
+		msg.m_int = (int)Direction::Right;
+	else if (details->m_name == "Player_MoveUp")
+		msg.m_int = (int)Direction::Up;
+	else if (details->m_name == "Player_MoveDown")
+		msg.m_int = (int)Direction::Down;
 
+	msg.m_receiver = m_player;
+	m_stateMgr->GetContext()->m_systemManager->
+		GetMessageHandler()->Dispatch(msg);
 }
 
 void State_Game::UpdateCamera()
@@ -95,6 +113,7 @@ void State_Game::UpdateCamera()
 	m_view.setCenter(pos->GetPosition());
 	context->m_wind->GetRenderWindow()->setView(m_view);
 
+	//Fitting map boundaries
 	sf::FloatRect viewSpace = context->m_wind->GetViewSpace();
 	if (viewSpace.left <= 0)
 	{
@@ -108,7 +127,6 @@ void State_Game::UpdateCamera()
 			(viewSpace.width / 2), m_view.getCenter().y);
 		context->m_wind->GetRenderWindow()->setView(m_view);
 	}
-
 	if (viewSpace.top <= 0)
 	{
 		m_view.setCenter(m_view.getCenter().x, viewSpace.height / 2);

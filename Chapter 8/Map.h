@@ -5,7 +5,10 @@
 #include "TextureManager.h"
 #include "EntityManager.h"
 
-enum Sheet{Tile_Size = 32, Sheet_Width = 256, Sheet_Height = 256};
+enum Sheet{
+	Tile_Size = 32, Sheet_Width = 256,
+	Sheet_Height = 256, Num_Layers = 4
+};
 
 using TileID = unsigned int;
 
@@ -58,6 +61,7 @@ struct Tile //Incredibly lightweight!
 	TileInfo * m_properties;
 	bool m_warp; // Is the tile  a warp
 	// Other flags unique to each tile
+	bool m_soild // Is the tile a solid
 };
 
 using TileMap = std::unordered_map<TileID, Tile*>;
@@ -68,7 +72,7 @@ class Map
 public:
 	Map(SharedContext * context, BaseState * currentState);
 	~Map();
-	Tile * GetTile(unsigned int x, unsigned int y);
+	Tile * GetTile(unsigned int x, unsigned int y, unsigned int layer);
 	TileInfo * GetDefaultTile();
 	float GetGravity() const;
 	unsigned int GetTileSize() const;
@@ -77,11 +81,12 @@ public:
 	void LoadMap(const std::string & path);
 	void LoadNext();
 	void Update(float dt);
-	void Draw();
+	void Draw(unsigned int layer);
 
 private:
 	//Method for converting 2D coordinates to 1D ints
-	unsigned int ConvertCoords(unsigned int x, unsigned int y);
+	unsigned int ConvertCoords(unsigned int x, unsigned int y,
+		unsigned int layer) const;
 	void LoadTiles(const std::string & path);
 	void PurgeMap();
 	void PurgeTileSet();
@@ -94,6 +99,7 @@ private:
 	sf::Vector2f m_playerStart;
 	unsigned int m_tileCount;
 	unsigned int m_tileSetCount;
+	int m_playerId;
 	float m_mapGravity;
 	std::string m_nextMap;
 	bool m_loadNextMap;

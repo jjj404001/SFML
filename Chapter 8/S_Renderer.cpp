@@ -108,6 +108,7 @@ void S_Renderer::Render(Window * wind, unsigned int layer)
 		//"Entity Culling"
 		if (!wind->GetViewSpace().intersects(drawableBounds))
 			continue;
+
 		drawable->Draw(wind->GetRenderWindow());
 	}
 }

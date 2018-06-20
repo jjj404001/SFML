@@ -17,9 +17,15 @@ Map::~Map()
 	m_context->m_gameMap = nullptr;
 }
 
-Tile * Map::GetTile(unsigned int x, unsigned int y)
+Tile * Map::GetTile(unsigned int x, unsigned int y, unsigned int layer)
 {
-	auto itr = m_tileMap.find(ConvertCoords(x, y));
+	if (x < 0 || y < 0 || x >= m_maxMapSize.x ||
+		y >= m_maxMapSize.y || layer < 0 ||
+		layer >= Sheet::Num_Layers)
+	{
+		return nullptr;
+	}
+	auto itr = m_tileMap.find(ConvertCoords(x, y, layer));
 	return(itr != m_tileMap.end() ? itr->second : nullptr);
 }
 
@@ -195,7 +201,7 @@ void Map::Update(float dt)
 	m_background.setPosition(viewSpace.left, viewSpace.top);
 }
 
-void Map::Draw()
+void Map::Draw(unsigned int layer)
 {
 	sf::RenderWindow * wind = m_context->m_wind->GetRenderWindow();
 	wind->draw(m_background);
@@ -231,7 +237,8 @@ void Map::Draw()
 }
 
 //Private methods
-unsigned int Map::ConvertCoords(unsigned int x, unsigned int y)
+unsigned int Map::ConvertCoords(unsigned int x, unsigned int y,
+	unsigned int layer) const
 {
 	return (x * m_maxMapSize.x) + y;
 }
