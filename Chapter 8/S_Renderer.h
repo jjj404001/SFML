@@ -4,7 +4,6 @@
 #include "S_Base.h"
 
 class Window;
-class Direction;
 class S_Renderer : public S_Base
 {
 public:

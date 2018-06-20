@@ -2,6 +2,7 @@
 #include "SystemManager.h"
 #include "EntityManager.h"
 #include "C_Position.h"
+#include "C_SpriteSheet.h"
 #include "Utilities.h"
 
 EntityManager::EntityManager(SystemManager * sysMgr,
@@ -9,7 +10,7 @@ EntityManager::EntityManager(SystemManager * sysMgr,
 	m_systems(sysMgr), m_texutreManager(textureMgr)
 {
 	AddComponentType<C_Position>(Component::Position);
-	//AddComponentType<C_SpriteSheet>(Component::SpriteSheet);
+	AddComponentType<C_SpriteSheet>(Component::SpriteSheet);
 	//AddComponentType<C_State>(Component::State);
 	//AddComponentType<C_Movable>(Component::Movable);
 	//AddComponentType<C_Controller>(Component::Controller);
