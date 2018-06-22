@@ -40,7 +40,7 @@ public:
 	}
 
 	//Merge two bitsets
-	void  TurnOnBit(const Bitset & bits)
+	void  TurnOnBits(const Bitset & bits)
 	{
 		m_bits |= bits;
 	}

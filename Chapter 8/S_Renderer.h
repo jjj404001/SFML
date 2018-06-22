@@ -2,6 +2,7 @@
 #define S_RENDERER_H
 
 #include "S_Base.h"
+#include "Direction.h"
 
 class Window;
 class S_Renderer : public S_Base

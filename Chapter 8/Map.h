@@ -61,7 +61,7 @@ struct Tile //Incredibly lightweight!
 	TileInfo * m_properties;
 	bool m_warp; // Is the tile  a warp
 	// Other flags unique to each tile
-	bool m_soild // Is the tile a solid
+	bool m_soild; // Is the tile a solid
 };
 
 using TileMap = std::unordered_map<TileID, Tile*>;
@@ -82,6 +82,7 @@ public:
 	void LoadNext();
 	void Update(float dt);
 	void Draw(unsigned int layer);
+	int GetPlayerId() { return m_playerId; }
 
 private:
 	//Method for converting 2D coordinates to 1D ints

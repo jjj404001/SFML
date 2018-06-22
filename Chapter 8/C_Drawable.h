@@ -5,7 +5,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "C_Base.h"
 
-class C_Drawable : C_Base
+class C_Drawable : public C_Base
 {
 public:
 	C_Drawable(const Component & type) : C_Base(type) {}

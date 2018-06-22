@@ -46,12 +46,12 @@ public:
 
 		//Component exists.
 		auto & container = itr->second.second;
-		auto component = std::find_if(container.begin(), container.end(),
+		auto cp = std::find_if(container.begin(), container.end(),
 			[&component](C_Base* c) 
 			{ return c->GetType() == component; });
 
-		return (component != container.end() ?
-			dynamic_cast<T*>(*component) : nullptr);
+		return (cp != container.end() ?
+			dynamic_cast<T*>(*cp) : nullptr);
 	}
 
 	bool RemoveComponent(const EntityId & entity,
@@ -67,14 +67,14 @@ private:
 	{
 		m_cFactory[id] = [] ()->C_Base* { return new T(); };
 	}
-
+	
 	//Data members
 	unsigned int m_idCounter;
 	EntityContainer m_entities;
 	ComponentFactory m_cFactory;
 
 	SystemManager * m_systems;
-	TextureManager * m_texutreManager;
+	TextureManager * m_textureManager;
 };
 
 #endif

@@ -1,10 +1,11 @@
 #include "Map.h"
+#include "C_Position.h"
 
 Map::Map(SharedContext * context, BaseState * currentState)
 	: m_context(context), m_defaultTile(context),
 	  m_maxMapSize(32, 32), m_tileCount(0), m_tileSetCount(0),
 	  m_mapGravity(512.f), m_loadNextMap(false),
-	  m_currentState(currentState)
+	  m_currentState(currentState), m_playerId(-1)
 {
 	m_context->m_gameMap = this;
 	LoadTiles("tiles.cfg");
@@ -92,8 +93,12 @@ void Map::LoadMap(const std::string & path)
 			}
 
 			sf::Vector2i tileCoords;
-			keystream >> tileCoords.x >> tileCoords.y;
-			if (tileCoords.x > m_maxMapSize.x || tileCoords.y > m_maxMapSize.y)
+			unsigned int tileLayer = 0;
+			unsigned int tileSolidity = 0;
+			keystream >> tileCoords.x >> tileCoords.y
+				>> tileLayer >> tileSolidity;
+			if (tileCoords.x > m_maxMapSize.x || tileCoords.y > m_maxMapSize.y ||
+				tileLayer >= Sheet::Num_Layers)
 			{
 				std::cout << "! Tile is out of range: " <<
 					tileCoords.x << " " << tileCoords.y << std::endl;
@@ -103,8 +108,9 @@ void Map::LoadMap(const std::string & path)
 			Tile * tile = new Tile();
 			//Bind properties of a tile from a set
 			tile->m_properties = itr->second;
+			tile->m_soild = (bool)tileSolidity;
 			if (!m_tileMap.emplace(ConvertCoords(
-				tileCoords.x, tileCoords.y), tile).second)
+				tileCoords.x, tileCoords.y, tileLayer), tile).second)
 			{
 				//Duplicate tile detected!
 				std::cout << "! Duplicate tile! : " << tileCoords.x
@@ -149,31 +155,22 @@ void Map::LoadMap(const std::string & path)
 			>> m_defaultTile.m_friction.y;
 		else if (type == "NEXTMAP")
 			keystream >> m_nextMap;
-		/*else if (type == "PLAYER")
+		else if (type == "ENTITY")
 		{
-			int playerId = -1;
-			EntityManager * entityMgr = m_context->m_entityManager;
-			if (playerId != -1)
+			std::string name;
+			keystream >> name;
+			if (name == "Player" && m_playerId != -1)
 				continue;
-			playerId = entityMgr->Add(EntityType::Player);
-			if (playerId < 0)
+			int entityId = m_context->m_entityManager->AddEntity(name);
+			if (entityId < 0)
 				continue;
-			keystream >> m_playerStart.x >> m_playerStart.y;
-			entityMgr->Find(playerId)->SetPosition(m_playerStart);
+			if (name == "Player")
+				m_playerId = entityId;
+			C_Base * position = m_context->m_entityManager->
+				GetComponent<C_Position>(entityId, Component::Position);
+			if (position)
+				keystream >> *position;
 		}
-		else if (type == "ENEMY")
-		{
-			EntityManager * entityMgr = m_context->m_entityManager;
-			std::string enemyName;
-			keystream >> enemyName;
-			int enemyId = entityMgr->Add(EntityType::Enemy, enemyName);
-			if (enemyId < 0)
-				continue;
-			float enemyX = 0;
-			float enemyY = 0;
-			keystream >> enemyX >> enemyY;
-			entityMgr->Find(enemyId)->SetPosition(enemyX, enemyY);
-		}*/
 	}
 }
 
@@ -203,30 +200,26 @@ void Map::Update(float dt)
 
 void Map::Draw(unsigned int layer)
 {
+	if (layer >= Sheet::Num_Layers)
+		return;
 	sf::RenderWindow * wind = m_context->m_wind->GetRenderWindow();
-	wind->draw(m_background);
 	sf::FloatRect viewSpace = m_context->m_wind->GetViewSpace();
 
-	//culling
 	sf::Vector2i tileBegin(
 		floor(viewSpace.left / Sheet::Tile_Size),
 		floor(viewSpace.top / Sheet::Tile_Size));
 	sf::Vector2i tileEnd(
-		ceil((viewSpace.left + viewSpace.width) / Sheet::Tile_Size),
-		ceil((viewSpace.top + viewSpace.height) / Sheet::Tile_Size));
+		ceil(viewSpace.left + viewSpace.width) / Sheet::Tile_Size,
+		ceil(viewSpace.top + viewSpace.height) / Sheet::Tile_Size);
 
 	unsigned int count = 0;
 	for (int x = tileBegin.x; x <= tileEnd.x; ++x)
 	{
-		for (int y = tileBegin.y; y < tileEnd.y; ++y)
+		for (int y = tileBegin.y; y <= tileEnd.y; ++y)
 		{
-			if (x < 0 || y < 0)
-				continue;
-
-			Tile * tile = GetTile(x, y);
+			Tile * tile = GetTile(x, y, layer);
 			if (!tile)
 				continue;
-
 			sf::Sprite & sprite = tile->m_properties->m_sprite;
 			sprite.setPosition(x * Sheet::Tile_Size,
 				y * Sheet::Tile_Size);
@@ -240,7 +233,7 @@ void Map::Draw(unsigned int layer)
 unsigned int Map::ConvertCoords(unsigned int x, unsigned int y,
 	unsigned int layer) const
 {
-	return (x * m_maxMapSize.x) + y;
+	return ((layer * m_maxMapSize.y + y) * m_maxMapSize.x + x);
 }
 
 void Map::LoadTiles(const std::string & path)

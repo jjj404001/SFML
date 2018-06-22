@@ -7,7 +7,7 @@
 
 EntityManager::EntityManager(SystemManager * sysMgr,
 	TextureManager * textureMgr) : m_idCounter(0),
-	m_systems(sysMgr), m_texutreManager(textureMgr)
+	m_systems(sysMgr), m_textureManager(textureMgr)
 {
 	AddComponentType<C_Position>(Component::Position);
 	AddComponentType<C_SpriteSheet>(Component::SpriteSheet);
@@ -139,8 +139,8 @@ bool EntityManager::AddComponent(const EntityId & entity,
 		return false;
 	//Component type does exist
 
-	C_Base * component = itr2->second();
-	itr->second.second.emplace_back(component);
+	C_Base * cp = itr2->second();
+	itr->second.second.emplace_back(cp);
 	itr->second.first.TurnOnBit((unsigned int)component);
 
 	//Notifying the system manager of a modified entity
